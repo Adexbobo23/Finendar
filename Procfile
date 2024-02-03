@@ -1,1 +1,1 @@
-web: gunicorn finendar.wsgi
+web: gunicorn finendar.wsgi:application --log-file -
