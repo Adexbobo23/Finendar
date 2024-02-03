@@ -1,19 +1,19 @@
 from django.db import models
-from django.conf import settings
+from django.contrib.auth import get_user_model
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255, default='')
-    last_name = models.CharField(max_length=255, default='')
-    current_job_place = models.CharField(max_length=255, default='')
-    designation = models.CharField(max_length=255, default='')
-    year_of_experience = models.CharField(max_length=10, default='')
-    qualification = models.CharField(max_length=255, default='')
-    email = models.EmailField(default='')
-    phone_number = models.CharField(max_length=20, default='')
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    display_name = models.CharField(max_length=50, default='display_name')
+    skill_occupation = models.CharField(max_length=100, blank=True, null=True)
     website_link = models.URLField(default='')
-    language = models.CharField(max_length=255, default='')
-    career_objective = models.TextField(default='')
+    bio = models.TextField(blank=True, null=True)
+
+    # Profile Image
+    profile_image = models.ImageField(upload_to='participant_profile_images/', blank=True, null=True)
 
     # Social Links
     facebook = models.URLField(default='')
@@ -22,34 +22,7 @@ class UserProfile(models.Model):
     pinterest = models.URLField(default='')
     dribbble = models.URLField(default='')
     behance = models.URLField(default='')
-
-    # Personal Information
-    father_name = models.CharField(max_length=255, default='')
-    mother_name = models.CharField(max_length=255, default='')
-    national_id = models.CharField(max_length=20, default='')
-    present_address = models.CharField(max_length=255, default='')
-    permanent_address = models.CharField(max_length=255, default='')
-    marital_status = models.CharField(max_length=20, default='')
-    gender = models.CharField(max_length=20, default='')
-    religion = models.CharField(max_length=255, default='')
-    blood_group = models.CharField(max_length=5, default='')
-    height = models.CharField(max_length=10, default='')
-    weight = models.CharField(max_length=10, default='')
-
-    # Education
-    education_level = models.CharField(max_length=255, default='')
-    major = models.CharField(max_length=255, default='')
-    institute = models.CharField(max_length=255, default='')
-    result_gpa = models.CharField(max_length=10, default='')
-    starting_period_education = models.DateField(default='2000-01-01')  
-    ending_period_education = models.DateField(default='2000-01-01')  
-
-    # Employment
-    company_name = models.CharField(max_length=255, default='')
-    designation_employment = models.CharField(max_length=255, default='')
-    starting_period_employment = models.DateField(default='2000-01-01')  
-    ending_period_employment = models.DateField(default='2000-01-01')  
-    responsibility = models.TextField(default='')
+    github = models.URLField(default='')
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} - {self.display_name}"

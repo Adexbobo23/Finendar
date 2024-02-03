@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .forms import InstructorForm
 
 
 @login_required(login_url='login')
@@ -59,4 +60,14 @@ def assignments(request):
 
 @login_required(login_url='login')
 def settings(request):
+    if request.method == 'POST':
+        form = InstructorForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Save the form data to the Instructor model
+            instructor_profile = form.save(commit=False)
+            instructor_profile.user = request.user  
+            instructor_profile.save()
+            return redirect('instructors_my_profile')
+    else:
+        form = InstructorForm(instance=request.user.instructor)
     return render(request, 'dashboard/instructor-settings.html')
