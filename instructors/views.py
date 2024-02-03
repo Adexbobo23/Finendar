@@ -1,73 +1,135 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import InstructorForm
+from .models import Instructor
 
 
 @login_required(login_url='login')
 def instructors_dashboard(request):
-    return render(request, 'dashboard/instructor-dashboard.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-dashboard.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def my_profile(request):
-    return render(request, 'dashboard/instructor-profile.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-profile.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def message(request):
-    return render(request, 'dashboard/instructor-message.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-message.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def wishlist(request):
-    return render(request, 'dashboard/instructor-wishlist.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-wishlist.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def reviews(request):
-    return render(request, 'dashboard/instructor-reviews.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-reviews.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def my_quiz_attempts(request):
-    return render(request, 'dashboard/instructor-quiz-attempts.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-quiz-attempts.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def order_history(request):
-    return render(request, 'dashboard/instructor-order-history.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-order-history.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def my_course(request):
-    return render(request, 'dashboard/instructor-course.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-course.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def announcements(request):
-    return render(request, 'dashboard/instructor-announcments.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-announcments.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def quiz_attempt(request):
-    return render(request, 'dashboard/instructor-quiz-attempts.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-quiz-attempts.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
 def assignments(request):
-    return render(request, 'dashboard/instructor-assignments.html')
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+    return render(request, 'dashboard/instructor-assignments.html', {'instructor_profile': instructor_profile})
 
 
 @login_required(login_url='login')
-def settings(request):
+def instructor_settings(request):
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except Instructor.DoesNotExist:
+        instructor_profile = None
+
+    try:
+        instructor_profile = Instructor.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        instructor_profile = None
+
     if request.method == 'POST':
-        form = InstructorForm(request.POST, request.FILES)
+        form = InstructorForm(request.POST, request.FILES, instance=instructor_profile)
         if form.is_valid():
             # Save the form data to the Instructor model
             instructor_profile = form.save(commit=False)
-            instructor_profile.user = request.user  
+            instructor_profile.user = request.user
             instructor_profile.save()
+            messages.success(request, "Profile updated successfully!")
             return redirect('instructors_my_profile')
+        else:
+            print(form.errors)
+            messages.error(request, "Error updating profile. Please check the form.")
     else:
-        form = InstructorForm(instance=request.user.instructor)
-    return render(request, 'dashboard/instructor-settings.html')
+        form = InstructorForm(instance=instructor_profile)
+
+    return render(request, 'dashboard/instructor-settings.html', {'form': form, 'instructor_profile': instructor_profile})

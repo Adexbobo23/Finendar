@@ -11,7 +11,7 @@ from .views import (
     announcements,
     quiz_attempt,
     assignments,
-    settings,
+    instructor_settings,
 )
 
 urlpatterns = [
@@ -26,5 +26,5 @@ urlpatterns = [
     path('announcements/', announcements, name='instructors_announcements'),
     path('quiz-attempt/', quiz_attempt, name='instructors_quiz_attempt'),
     path('assignments/', assignments, name='instructors_assignments'),
-    path('settings/', settings, name='instructors_settings'),
+    path('settings/', instructor_settings, name='instructors_settings'),
 ]

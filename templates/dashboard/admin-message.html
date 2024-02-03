@@ -16,7 +16,11 @@
                                 <div class="dashboardarea__inner admin__dashboard__inner">
                                     <div class="dashboardarea__left">
                                         <div class="dashboardarea__left__img">
-                                            <img loading="lazy"  src="{% static '/img/dashbord/dashbord__2.jpg' %}" alt="">
+                                            {% if company_profile and company_profile.profile_image and company_profile.profile_image.url %}
+                                                <img loading="lazy" src="{{ company_profile.profile_image.url }}" alt="" height="120px" width="50px">
+                                            {% else %}
+                                                <img loading="lazy" src="{% static '/img/avatar.jpg' %}" alt="" height="120px" width="50px">
+                                            {% endif %}
                                         </div>
                                         {% if user.is_authenticated %}
                                         <div class="dashboardarea__left__content">

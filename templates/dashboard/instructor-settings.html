@@ -15,7 +15,14 @@
                                 <div class="dashboardarea__inner">
                                     <div class="dashboardarea__left">
                                         <div class="dashboardarea__left__img">
-                                            <img loading="lazy"  src="{% static '/img/dashbord/dashbord__2.jpg' %}" alt="">
+                                            <div class="dashboardarea__left__img">
+                                                {% if instructor_profile and instructor_profile.profile_image and instructor_profile.profile_image.url %}
+                                                    <img loading="lazy" src="{{ instructor_profile.profile_image.url }}" alt="" height="120px" width="50px">
+                                                {% else %}
+                                                    <img loading="lazy" src="{% static '/img/avatar.jpg' %}" alt="" height="120px" width="50px">
+                                                {% endif %}
+                                            </div>
+                                            
                                         </div>
                                         {% if user.is_authenticated %}
                                         <div class="dashboardarea__left__content">
@@ -179,13 +186,6 @@
                                                     data-bs-target="#projects__two" type="button" aria-selected="false"
                                                     role="tab" tabindex="-1">Password</button>
                                             </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="single__tab__link" data-bs-toggle="tab"
-                                                    data-bs-target="#projects__three" type="button"
-                                                    aria-selected="false" role="tab" tabindex="-1">Social Icon</button>
-                                            </li>
-
-
 
                                         </ul>
                                     </div>
@@ -198,110 +198,140 @@
                                             aria-labelledby="projects__one">
                                             <div class="row">
                                                 <div class="col-xl-12">
-                                                    <!-- <div class="dashboardarea__wraper">
-                                                        <div class="dashboardarea__img dashboardarea__margin__0">
-                                                            <img loading="lazy"  src="{% static '/img/dashbord/dashbord__1.jpg' %}" alt="">
-                                                            <div class="dashboardarea__inner">
-                                                                <div class="dashboardarea__left">
-                                                                    <div class="dashboardarea__left__img">
-                                                                        <img loading="lazy"  src="{% static '/img/dashbord/dashbord__2.jpg' %}"
-                                                                            alt="">
-                                                                    </div>
-
-                                                                </div>
-
-                                                                <div class="dashboardarea__right">
-                                                                    <div class="dashboardarea__right__button">
-                                                                        <a class="default__button" href="#">Create a New
-                                                                            Course
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-arrow-right">
-                                                                                <line x1="5" y1="12" x2="19" y2="12">
-                                                                                </line>
-                                                                                <polyline points="12 5 19 12 12 19">
-                                                                                </polyline>
-                                                                            </svg></a>
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="row">
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">First Name</label>
-                                                                    <input type="text" placeholder="John">
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        <form method="post" enctype="multipart/form-data">
+                                                            {% csrf_token %}
+                                                            <div class="row">
 
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">Last Name</label>
-                                                                    <input type="text" placeholder="Due">
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.profile_image.label_tag }}
+                                                                            {{ form.profile_image }}
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">User Name</label>
-                                                                    <input type="text" placeholder="johndue">
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.phone_number.label_tag }}
+                                                                            {{ form.phone_number }}
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                                
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.skill_occupation.label_tag }}
+                                                                            {{ form.skill_occupation }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.display_name.label_tag }}
+                                                                            {{ form.display_name }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">Phone Number</label>
-                                                                    <input type="text" placeholder="+1-202-555-0174">
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.website_link.label_tag }}
+                                                                            {{ form.website_link }}
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                                
+                                                                <div class="col-xl-12">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.bio.label_tag }}
+                                                                            {{ form.bio }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">Skill/Occupation</label>
-                                                                    <input type="text"
-                                                                        placeholder="Full Stack Developer">
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.facebook.label_tag }}
+                                                                            {{ form.facebook }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.twitter.label_tag }}
+                                                                            {{ form.twitter }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.linkedin.label_tag }}
+                                                                            {{ form.linkedin }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.pinterest.label_tag }}
+                                                                            {{ form.pinterest }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.dribbble.label_tag }}
+                                                                            {{ form.dribbble }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.behance.label_tag }}
+                                                                            {{ form.behance }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-xl-6">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            {{ form.github.label_tag }}
+                                                                            {{ form.github }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- Add similar blocks for other form fields -->
+                                                        
+                                                                <div class="col-xl-12">
+                                                                    <div class="dashboard__form__wraper">
+                                                                        <div class="dashboard__form__input">
+                                                                            <button type="submit" class="default__button">Update Info</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">Display Name Publicly As</label>
-                                                                    <input type="text" placeholder="John">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <div class="dashboard__form__wraper">
-                                                                <div class="dashboard__form__input">
-                                                                    <label for="#">Bio</label>
-                                                                    <textarea name="" id="" cols="30"
-                                                                        rows="10">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <div class="dashboard__form__button">
-                                                                <a class="default__button" href="#">Update Info</a>
-                                                            </div>
-                                                        </div>
+                                                        </form>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

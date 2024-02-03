@@ -15,7 +15,11 @@
                                 <div class="dashboardarea__inner student__dashboard__inner">
                                     <div class="dashboardarea__left">
                                         <div class="dashboardarea__left__img">
-                                            <img loading="lazy"  src="{% static '/img/teacher/teacher__2.png' %}" alt="">
+                                            {% if user_profile and user_profile.profile_image and user_profile.profile_image.url %}
+                                                <img loading="lazy"  src="{{ user_profile.profile_image.url }}" alt="">
+                                            {% else %}
+                                                <img loading="lazy" src="{% static '/img/avatar.jpg' %}" alt="" height="120px" width="50px">
+                                            {% endif %}
                                         </div>
                                         {% if user.is_authenticated %}
                                         <div class="dashboardarea__left__content">

@@ -15,7 +15,11 @@
                                 <div class="dashboardarea__inner">
                                     <div class="dashboardarea__left">
                                         <div class="dashboardarea__left__img">
-                                            <img loading="lazy"  src="{% static '/img/dashbord/dashbord__2.jpg' %}" alt="">
+                                            {% if instructor_profile and instructor_profile.profile_image and instructor_profile.profile_image.url %}
+                                                <img loading="lazy" src="{{ instructor_profile.profile_image.url }}" alt="" height="120px" width="50px">
+                                            {% else %}
+                                                <img loading="lazy" src="{% static '/img/avatar.jpg' %}" alt="" height="120px" width="50px">
+                                            {% endif %}
                                         </div>
                                         <div class="dashboardarea__left__content">
                                             <h5>Hello</h5>
