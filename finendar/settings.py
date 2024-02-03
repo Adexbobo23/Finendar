@@ -86,10 +86,21 @@ WSGI_APPLICATION = 'finendar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dfqoagpf4mqiv8', 
+        'USER': 'u1452vtfn34jo6',
+        'PASSWORD': 'pd5e69af70fb4ad66e71b4a087e3eb90d16f04a8df30351314a1bd8cbbad3aaaf',
+        'HOST': 'ec2-54-163-218-245.compute-1.amazonaws.com', 
+        'PORT': '5432',
     }
 }
 
