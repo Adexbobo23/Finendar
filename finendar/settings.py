@@ -105,11 +105,9 @@ DATABASES = {
     }
 }
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
+# settings.py
+# STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
