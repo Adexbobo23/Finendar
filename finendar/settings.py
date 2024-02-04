@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -96,14 +97,19 @@ WSGI_APPLICATION = 'finendar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dfqoagpf4mqiv8', 
-        'USER': 'u1452vtfn34jo6',
-        'PASSWORD': 'pd5e69af70fb4ad66e71b4a087e3eb90d16f04a8df30351314a1bd8cbbad3aaaf',
-        'HOST': 'ec2-54-163-218-245.compute-1.amazonaws.com', 
+        'NAME': 'd9s1vsh9hr38t7', 
+        'USER': 'u228viai4r4i03',
+        'PASSWORD': 'p6d7037d70ffcc88d7d32941f4a2db8c18b67ddececba5cb68928f1e939485ea3',
+        'HOST': 'ec2-44-213-218-60.compute-1.amazonaws.com', 
         'PORT': '5432',
     }
 }
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
