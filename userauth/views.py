@@ -45,4 +45,4 @@ def login_participant(request):
 
 def logout_participant(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')

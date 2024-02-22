@@ -13,7 +13,49 @@ class Course(models.Model):
     requirements = models.TextField()
     description = models.TextField()
     course_tags = models.TextField()
-
     video_url = models.URLField()
     certificate_image = models.ImageField(upload_to='certificate_templates/', blank=True, null=True)
+    course_image = models.ImageField(upload_to='course_images/', blank=True, null=True)
+    
+    # Fields for course lessons
+    lesson_1 = models.URLField(blank=True, null=True)
+    lesson_2 = models.URLField(blank=True, null=True)
+    lesson_3 = models.URLField(blank=True, null=True)
+    lesson_4 = models.URLField(blank=True, null=True)
+    lesson_5 = models.URLField(blank=True, null=True)
+    lesson_6 = models.URLField(blank=True, null=True)
+    lesson_7 = models.URLField(blank=True, null=True)
+    lesson_8 = models.URLField(blank=True, null=True)
+    lesson_9 = models.URLField(blank=True, null=True)
+    lesson_10 = models.URLField(blank=True, null=True)
+    lesson_11 = models.URLField(blank=True, null=True)
+    lesson_12 = models.URLField(blank=True, null=True)
+    lesson_13 = models.URLField(blank=True, null=True)
+    lesson_14 = models.URLField(blank=True, null=True)
+    lesson_15 = models.URLField(blank=True, null=True)
+    lesson_16 = models.URLField(blank=True, null=True)
+    lesson_17 = models.URLField(blank=True, null=True)
+    lesson_18 = models.URLField(blank=True, null=True)
+    lesson_19 = models.URLField(blank=True, null=True)
+    lesson_20 = models.URLField(blank=True, null=True)
+    lesson_21 = models.URLField(blank=True, null=True)
+    lesson_22 = models.URLField(blank=True, null=True)
+    lesson_23 = models.URLField(blank=True, null=True)
+    lesson_24 = models.URLField(blank=True, null=True)
+    lesson_25 = models.URLField(blank=True, null=True)
+    lesson_26 = models.URLField(blank=True, null=True)
+    lesson_27 = models.URLField(blank=True, null=True)
+    lesson_28 = models.URLField(blank=True, null=True)
+    lesson_29 = models.URLField(blank=True, null=True)
+    lesson_30 = models.URLField(blank=True, null=True)
 
+    # Fields for course materials
+    course_material_1 = models.FileField(upload_to='course_materials/', blank=True, null=True)
+    course_material_2 = models.FileField(upload_to='course_materials/', blank=True, null=True)
+    course_material_3 = models.FileField(upload_to='course_materials/', blank=True, null=True)
+    course_material_4 = models.FileField(upload_to='course_materials/', blank=True, null=True)
+    course_material_5 = models.FileField(upload_to='course_materials/', blank=True, null=True)
+
+
+    def __str__(self):
+        return self.title

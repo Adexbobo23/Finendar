@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm
 from .models import Course
 from django.contrib.auth.decorators import login_required
@@ -17,3 +17,13 @@ def create_project(request):
         form = CourseForm()
     
     return render(request, 'dashboard/create-course.html', {'form': form})
+
+
+def all_courses(request):
+    courses = Course.objects.all()
+    return render(request, 'course.html', {'courses': courses})
+
+
+def course_details(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    return render(request, 'course-details.html', {'course': course})

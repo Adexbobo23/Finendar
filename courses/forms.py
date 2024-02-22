@@ -4,13 +4,13 @@ from .models import Course
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['title', 'slug', 'free_regular_price', 'discounted_price', 'about_course', 
-                  'start_date', 'language', 'requirements', 'description', 'course_tags', 
-                  'video_url', 'certificate_image']
+        exclude = ['user']
         widgets = {
-            'certificate_image': forms.FileInput(attrs={'accept': 'image/*'}),  # Optional: Add file input widget
+            'certificate_image': forms.FileInput(attrs={'accept': 'image/*'}),
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
     def __init__(self, *args, **kwargs):
         super(CourseForm, self).__init__(*args, **kwargs)
-        self.fields['certificate_image'].required = False  # Make certificate_image field optional
+        for field_name in self.fields:
+            self.fields[field_name].required = False

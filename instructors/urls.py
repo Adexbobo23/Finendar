@@ -12,6 +12,7 @@ from .views import (
     quiz_attempt,
     assignments,
     instructor_settings,
+    instructor_details
 )
 
 urlpatterns = [
@@ -27,4 +28,5 @@ urlpatterns = [
     path('quiz-attempt/', quiz_attempt, name='instructors_quiz_attempt'),
     path('assignments/', assignments, name='instructors_assignments'),
     path('settings/', instructor_settings, name='instructors_settings'),
+    path('instructor/<int:instructor_id>/', instructor_details, name='instructor_details'),
 ]

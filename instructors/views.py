@@ -14,7 +14,10 @@ def instructors_dashboard(request):
         instructor_profile = None
     return render(request, 'dashboard/instructor-dashboard.html', {'instructor_profile': instructor_profile})
 
-
+def instructor_details(request, instructor_id):
+    instructor = get_object_or_404(Instructor, id=instructor_id)
+    return render(request, 'instructor-details.html', {'instructor': instructor})
+    
 @login_required(login_url='login')
 def my_profile(request):
     try:
