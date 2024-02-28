@@ -101,7 +101,7 @@
                                         Lectures : <span>120 sub</span>
                                     </li>
                                     <li>
-                                        Duration : <span>20h 41m 32s</span>
+                                        Duration : <span>{{ course.duration }}</span>
                                     </li>
                                     <li>
                                         Enrolled : <span>2 students</span>
@@ -118,10 +118,10 @@
                                         Language : <span>English spanish</span>
                                     </li>
                                     <li>
-                                        Price Discount : <span>-20%</span>
+                                        Price Discount : <span>${{ course.discounted_price }}</span>
                                     </li>
                                     <li>
-                                        Regular Price : <span>$228/Mo</span>
+                                        Regular Price : <span>${{ course.free_regular_price }}</span>
                                     </li>
                                     <li>
                                         Course Status : <span>Available</span>
@@ -574,104 +574,43 @@
 
                             <div class="online__course__wrap">
                                 <div class="instructor__heading__2" data-aos="fade-up">
-                                    <h3>Author More Courses</h3>
+                                    <h3>Author More Project</h3>
                                     <a href="{% url 'all_courses' %}">More Courses...</a>
                                 </div>
 
                                 <div class="row instructor__slider__active row__custom__class" data-aos="fade-up">
+                                    {% for course in courses %}
                                     <div class="col-xl-6 column__custom__class">
                                         <div class="gridarea__wraper">
                                             <div class="gridarea__img">
-                                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_1.png' %}" alt="grid"></a>
+                                                <a href="{% url 'course_details' course.id %}"><img loading="lazy" src="{{ course.course_image.url }}" alt="grid"></a>
                                                 <div class="gridarea__small__button">
-                                                    <div class="grid__badge">Data &amp; Tech</div>
+                                                    <div class="grid__badge">{{ course.language }}</div>
                                                 </div>
                                                 <div class="gridarea__small__icon">
                                                     <a href="#"><i class="icofont-heart-alt"></i></a>
                                                 </div>
-
                                             </div>
                                             <div class="gridarea__content">
                                                 <div class="gridarea__list">
                                                     <ul>
-                                                        <li>
-                                                            <i class="icofont-book-alt"></i> 23 Lesson
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont-clock-time"></i> 1 hr 30 min
-                                                        </li>
+                                                        <li><i class="icofont-book-alt"></i> {{ course.lesson_set }}</li>
+                                                        <li><i class="icofont-clock-time"></i> {{ course.duration }}</li>
                                                     </ul>
                                                 </div>
                                                 <div class="gridarea__heading">
-                                                    <h3><a href="course-details.html">Foundation course to under stand
-                                                    about softwere</a></h3>
+                                                    <h3><a href="{% url 'course_details' course.id %}">{{ course.title }}</a></h3>
                                                 </div>
                                                 <div class="gridarea__price">
-                                                    $32.00 <del>/ $67.00</del>
+                                                    ${{ course.discounted_price }} <del>/ ${{ course.free_regular_price }}</del>
                                                     <span> <del class="del__2">Free</del></span>
-
                                                 </div>
                                                 <div class="gridarea__bottom">
-
-                                                    <a href="instructor-details.html">
+                                                    <a href="{% url 'instructor_details' course.user.instructor.id %}">
                                                         <div class="gridarea__small__img">
-                                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
+                                                            <!-- <img loading="lazy" src="{{ course.user.profile_picture.url }}" alt="grid"> -->
                                                             <div class="gridarea__small__content">
-                                                                <h6>Micle Jhon</h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="gridarea__star">
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <span>(44)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 column__custom__class">
-                                        <div class="gridarea__wraper">
-                                            <div class="gridarea__img">
-                                                <img loading="lazy"  src="{% static 'img/grid/grid_2.png' %}" alt="grid">
-                                                <div class="gridarea__small__button">
-                                                    <div class="grid__badge blue__color">Mechanical</div>
-                                                </div>
-                                                <div class="gridarea__small__icon">
-                                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="gridarea__content">
-                                                <div class="gridarea__list">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont-book-alt"></i> 29 Lesson
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont-clock-time"></i> 2 hr 10 min
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="gridarea__heading">
-                                                    <h3><a href="#">Nidnies course to under stand
-                                                    about softwere</a></h3>
-                                                </div>
-                                                <div class="gridarea__price green__color">
-                                                    $32.00<del>/$67.00</del>
-                                                    <span>.Free</span>
-
-                                                </div>
-                                                <div class="gridarea__bottom">
-                                                    <a href="instructor-details.html">
-                                                        <div class="gridarea__small__img">
-                                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_2.jpg' %}" alt="grid">
-                                                            <div class="gridarea__small__content">
-                                                                <h6>Rinis Jhon</h6>
+                                                                <h6>{{ course.user.get_full_name }}</h6>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -687,120 +626,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 column__custom__class">
-                                        <div class="gridarea__wraper">
-                                            <div class="gridarea__img">
-                                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_1.png' %}" alt="grid"></a>
-                                                <div class="gridarea__small__button">
-                                                    <div class="grid__badge">Data &amp; Tech</div>
-                                                </div>
-                                                <div class="gridarea__small__icon">
-                                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="gridarea__content">
-                                                <div class="gridarea__list">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont-book-alt"></i> 23 Lesson
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont-clock-time"></i> 1 hr 30 min
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="gridarea__heading">
-                                                    <h3><a href="course-details.html">Foundation course to under stand
-                                                    about softwere</a></h3>
-                                                </div>
-                                                <div class="gridarea__price">
-                                                    $32.00 <del>/ $67.00</del>
-                                                    <span> <del class="del__2">Free</del></span>
-
-                                                </div>
-                                                <div class="gridarea__bottom">
-
-                                                    <a href="instructor-details.html">
-                                                        <div class="gridarea__small__img">
-                                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
-                                                            <div class="gridarea__small__content">
-                                                                <h6>Micle Jhon</h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-
-                                                    <div class="gridarea__star">
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <span>(44)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 column__custom__class">
-                                        <div class="gridarea__wraper">
-                                            <div class="gridarea__img">
-                                                <img loading="lazy"  src="{% static 'img/grid/grid_2.png' %}" alt="grid">
-                                                <div class="gridarea__small__button">
-                                                    <div class="grid__badge blue__color">Mechanical</div>
-                                                </div>
-                                                <div class="gridarea__small__icon">
-                                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="gridarea__content">
-                                                <div class="gridarea__list">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont-book-alt"></i> 29 Lesson
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont-clock-time"></i> 2 hr 10 min
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="gridarea__heading">
-                                                    <h3><a href="#">Nidnies course to under stand
-                                                    about softwere</a></h3>
-                                                </div>
-                                                <div class="gridarea__price green__color">
-                                                    $32.00<del>/$67.00</del>
-                                                    <span>.Free</span>
-
-                                                </div>
-                                                <div class="gridarea__bottom">
-                                                    <a href="instructor-details.html">
-                                                        <div class="gridarea__small__img">
-                                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_2.jpg' %}" alt="grid">
-                                                            <div class="gridarea__small__content">
-                                                                <h6>Rinis Jhon</h6>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <div class="gridarea__star">
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <span>(44)</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
 
 
-                            <div class="blog__details__comment">
+                            <!-- <div class="blog__details__comment">
                                 <div class="blog__details__comment__heading" data-aos="fade-up">
                                     <h5>(04) Comment</h5>
                                 </div>
@@ -900,7 +732,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <div class="blog__details__form">
@@ -941,8 +773,6 @@
                             <div class="blog__details__button" data-aos="fade-up">
                                 <a class="default__button" href="#">Post a Comment</a>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -1081,61 +911,20 @@
                             </div>
 
                             <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
-
-                                <h4 class="sidebar__title">Populer Course</h4>
-                                <ul class="course__details__populer__list">
+                                <h4 class="sidebar__title">Popular Projects</h4>
+                                <ul class="course__details__popular__list">
+                                    {% for course in courses %}
                                     <li>
-
-                                        <div class="course__details__populer__img">
-                                            <img loading="lazy"  src="{% static 'img/blog-details/blog-details__6.png' %}" alt="populer">
+                                        <div class="course__details__popular__img">
+                                            <img loading="lazy" src="{{ course.course_image.url }}" alt="popular" width="150px" height="100px">
                                         </div>
-                                        <div class="course__details__populer__content">
-                                            <span>$32,000</span>
-                                            <h6>
-                                                <a href="#">Making Music with Other People</a>
-
-                                            </h6>
+                                        <div class="course__details__popular__content">
+                                            <span>${{ course.discounted_price }}</span>
+                                            <h6><a href="{% url 'course_details' course.id %}">{{ course.title }}</a></h6>
                                         </div>
-
-
-
                                     </li>
-                                    <li>
-
-                                        <div class="course__details__populer__img">
-                                            <img loading="lazy"  src="{% static 'img/blog-details/blog-details__7.png' %}" alt="populer">
-                                        </div>
-                                        <div class="course__details__populer__content">
-                                            <span>$32,000</span>
-                                            <h6>
-                                                <a href="#">Making Music with Other People</a>
-
-                                            </h6>
-                                        </div>
-
-
-
-
-                                    </li>
-                                    <li>
-
-                                        <div class="course__details__populer__img">
-                                            <img loading="lazy"  src="{% static 'img/blog-details/blog-details__8.png' %}" alt="populer">
-                                        </div>
-                                        <div class="course__details__populer__content">
-                                            <span>$32,000</span>
-                                            <h6>
-                                                <a href="#">Making Music with Other People</a>
-
-                                            </h6>
-                                        </div>
-
-
-
-
-                                    </li>
+                                    {% endfor %}
                                 </ul>
-
                             </div>
                             <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
 

@@ -46,7 +46,10 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6" data-aos="fade-up">
                         <div class="aboutarea__5__img" data-tilt>
-                            <img loading="lazy"  src="{% static 'img/about/about_14.png' %}" alt="about">
+                            <img loading="lazy"  src="{% static 'img/finendar/7.jpeg' %}" alt="about">
+                        </div>
+                        <div class="aboutarea__5__img" data-tilt style="margin-top: 20px;">
+                            <img loading="lazy"  src="{% static 'img/finendar/2.jpeg' %}" alt="about">
                         </div>
                     </div>
 
@@ -107,9 +110,9 @@
                             <li class="nav-item" role="presentation">
                                 <button class="single__tab__link active" data-bs-toggle="tab" data-bs-target="#projects__one" type="button">About</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <!-- <li class="nav-item" role="presentation">
                                 <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__two" type="button">Course</button>
-                            </li>
+                            </li> -->
                             <li class="nav-item" role="presentation">
                                 <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__three" type="button">awards</button>
                             </li>
@@ -463,7 +466,7 @@
 
                 <div class="section__title">
                     <div class="section__title__button">
-                        <div class="default__small__button">Popular Courses</div>
+                        <div class="default__small__button">Popular Courses / Projects</div>
                     </div>
                     <div class="section__title__heading">
                         <h2>Choose The Best Package
@@ -472,49 +475,45 @@
                 </div>
 
                 <div class="row about__course__slider__active row__custom__class">
+                    {% for course in courses %}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item column__custom__class">
                         <div class="gridarea__wraper">
                             <div class="gridarea__img">
-                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_7.png' %}" alt="grid"></a>
+                                <a href="{% url 'course_details' course.pk %}"><img loading="lazy" src="{{ course.course_image.url }}" alt="grid"></a>
                                 <div class="gridarea__small__button gridarea__small__button__1">
-                                    <div class="grid__badge">Data & Tech</div>
+                                    <div class="grid__badge">{{ course.language }}</div>
                                 </div>
                                 <div class="gridarea__small__icon">
                                     <a href="#"><i class="icofont-heart-alt"></i></a>
                                 </div>
-
                             </div>
                             <div class="gridarea__content">
                                 <div class="gridarea__list">
                                     <ul>
                                         <li>
-                                            <i class="icofont-book-alt"></i> 23 Lesson
+                                            <i class="icofont-book-alt"></i> {{ course.lesson_set }}
                                         </li>
                                         <li>
-                                            <i class="icofont-clock-time"></i> 1 hr 30 min
+                                            <i class="icofont-clock-time"></i> {{ course.duration }}
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="gridarea__heading">
-                                    <h3><a href="course-details.html">Foundation course to under stand
-                                about softwere</a></h3>
+                                    <h3><a href="{% url 'course_details' course.id %}">{{ course.title }}</a></h3>
                                 </div>
                                 <div class="gridarea__price">
-                                    $32.00 <del>/ $67.00</del>
-                                    <span> <del class="del__2">Free</del></span>
-
+                                    ${{ course.discounted_price }} <del>/ ${{ course.free_regular_price }}</del>
+                                    <span><del class="del__2">Free</del></span>
                                 </div>
                                 <div class="gridarea__bottom">
-
-                                    <a href="instructor-details.html">
+                                    <a href="{% url 'instructor_details' course.user.instructor.id %}">
                                         <div class="gridarea__small__img">
-                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
+                                            <!-- <img loading="lazy" src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid"> -->
                                             <div class="gridarea__small__content">
-                                                <h6>Micle Jhon</h6>
+                                                <h6>{{ course.user.get_full_name }}</h6>
                                             </div>
                                         </div>
                                     </a>
-
                                     <div class="gridarea__star">
                                         <i class="icofont-star"></i>
                                         <i class="icofont-star"></i>
@@ -527,172 +526,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item column__custom__class">
-                        <div class="gridarea__wraper">
-                            <div class="gridarea__img">
-                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_8.png' %}" alt="grid"></a>
-                                <div class="gridarea__small__button">
-                                    <div class="grid__badge">Data & Tech</div>
-                                </div>
-                                <div class="gridarea__small__icon">
-                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="gridarea__content">
-                                <div class="gridarea__list">
-                                    <ul>
-                                        <li>
-                                            <i class="icofont-book-alt"></i> 23 Lesson
-                                        </li>
-                                        <li>
-                                            <i class="icofont-clock-time"></i> 1 hr 30 min
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="gridarea__heading">
-                                    <h3><a href="course-details.html">Foundation course to under stand
-                                about softwere</a></h3>
-                                </div>
-                                <div class="gridarea__price">
-                                    $32.00 <del>/ $67.00</del>
-                                    <span> <del class="del__2">Free</del></span>
-
-                                </div>
-                                <div class="gridarea__bottom">
-
-                                    <a href="instructor-details.html">
-                                        <div class="gridarea__small__img">
-                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
-                                            <div class="gridarea__small__content">
-                                                <h6>Micle Jhon</h6>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <div class="gridarea__star">
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <span>(44)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item column__custom__class">
-                        <div class="gridarea__wraper">
-                            <div class="gridarea__img">
-                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_9.png' %}" alt="grid"></a>
-                                <div class="gridarea__small__button">
-                                    <div class="grid__badge">Data & Tech</div>
-                                </div>
-                                <div class="gridarea__small__icon">
-                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="gridarea__content">
-                                <div class="gridarea__list">
-                                    <ul>
-                                        <li>
-                                            <i class="icofont-book-alt"></i> 23 Lesson
-                                        </li>
-                                        <li>
-                                            <i class="icofont-clock-time"></i> 1 hr 30 min
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="gridarea__heading">
-                                    <h3><a href="course-details.html">Foundation course to under stand
-                                about softwere</a></h3>
-                                </div>
-                                <div class="gridarea__price">
-                                    $32.00 <del>/ $67.00</del>
-                                    <span> <del class="del__2">Free</del></span>
-
-                                </div>
-                                <div class="gridarea__bottom">
-
-                                    <a href="instructor-details.html">
-                                        <div class="gridarea__small__img">
-                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
-                                            <div class="gridarea__small__content">
-                                                <h6>Micle Jhon</h6>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <div class="gridarea__star">
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <span>(44)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item column__custom__class">
-                        <div class="gridarea__wraper">
-                            <div class="gridarea__img">
-                                <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_7.png' %}" alt="grid"></a>
-                                <div class="gridarea__small__button gridarea__small__button__1">
-                                    <div class="grid__badge">Data & Tech</div>
-                                </div>
-                                <div class="gridarea__small__icon">
-                                    <a href="#"><i class="icofont-heart-alt"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="gridarea__content">
-                                <div class="gridarea__list">
-                                    <ul>
-                                        <li>
-                                            <i class="icofont-book-alt"></i> 23 Lesson
-                                        </li>
-                                        <li>
-                                            <i class="icofont-clock-time"></i> 1 hr 30 min
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="gridarea__heading">
-                                    <h3><a href="course-details.html">Foundation course to under stand
-                                about softwere</a></h3>
-                                </div>
-                                <div class="gridarea__price">
-                                    $32.00 <del>/ $67.00</del>
-                                    <span> <del class="del__2">Free</del></span>
-
-                                </div>
-                                <div class="gridarea__bottom">
-
-                                    <a href="instructor-details.html">
-                                        <div class="gridarea__small__img">
-                                            <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
-                                            <div class="gridarea__small__content">
-                                                <h6>Micle Jhon</h6>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <div class="gridarea__star">
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <i class="icofont-star"></i>
-                                        <span>(44)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% endfor %}
 
                 </div>
             </div>

@@ -26,4 +26,10 @@ def all_courses(request):
 
 def course_details(request, course_id):
     course = get_object_or_404(Course, id=course_id)
-    return render(request, 'course-details.html', {'course': course})
+    # Fetch the latest 2 courses
+    courses = Course.objects.order_by('-id')[:2]
+    context = {
+        'course': course,
+        'courses': courses
+    }
+    return render(request, 'course-details.html', context)

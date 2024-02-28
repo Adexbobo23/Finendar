@@ -7,6 +7,8 @@ class Course(models.Model):
     slug = models.SlugField(max_length=255)
     free_regular_price = models.DecimalField(max_digits=10, decimal_places=2)
     discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
+    duration = models.CharField(max_length=255, default='2 hours')
+    lesson_set = models.CharField(max_length=255, default='30 lessons')
     about_course = models.TextField()
     start_date = models.DateField()
     language = models.CharField(max_length=100)

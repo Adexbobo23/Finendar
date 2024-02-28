@@ -240,7 +240,7 @@
                                                 <div class="gridarea__list">
                                                     <ul>
                                                         <li>
-                                                            <i class="icofont-book-alt"></i> {{ course.lesson_set.count }} Lessons
+                                                            <i class="icofont-book-alt"></i> {{ course.lesson_set }}
                                                         </li>
                                                         <!-- Assuming you have a duration field in your model -->
                                                         <li>
@@ -261,7 +261,7 @@
                                                             <div class="gridarea__small__img">
                                                                 <img loading="lazy" src="{{ course.user.profile_image.url }}" alt="{{ course.user.profile.name }}">
                                                                 <div class="gridarea__small__content">
-                                                                    <h6>{{ course.user.username }}</h6>
+                                                                    <h6>{{ course.user.get_full_name }}</h6>
                                                                 </div>
                                                             </div>
                                                         </a>
