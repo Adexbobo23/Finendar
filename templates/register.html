@@ -66,71 +66,148 @@
                                             <h5 class="login__title">Sign Up</h5>
                                             <p class="login__description">Already have an account? <a href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#registerModal">Log In</a></p>
                                         </div>
-    
-                                        <form method="post" action="{% url 'register' %}" class="row">
+
+                                        <form method="post" action="{% url 'register' %}" class="row" id="register-form">
                                             {% csrf_token %}
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.first_name.label_tag }}
-                                                    {{ form.first_name }}
-                                                    {{ form.first_name.errors }}
+                                                    <label class="form__label" for="id_first_name">First Name</label>
+                                                    <input class="common__login__input" type="text" name="first_name" id="id_first_name" placeholder="First Name" required>
+                                                    {% if form.first_name.errors %}
+                                                    <p class="error">{{ form.first_name.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.last_name.label_tag }}
-                                                    {{ form.last_name }}
-                                                    {{ form.last_name.errors }}
+                                                    <label class="form__label" for="id_last_name">Last Name</label>
+                                                    <input class="common__login__input" type="text" name="last_name" id="id_last_name" placeholder="Last Name" required>
+                                                    {% if form.last_name.errors %}
+                                                    <p class="error">{{ form.last_name.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.username.label_tag }}
-                                                    {{ form.username }}
-                                                    {{ form.username.errors }}
+                                                    <label class="form__label" for="id_username">Username</label>
+                                                    <input class="common__login__input" type="text" name="username" id="id_username" placeholder="Username" required>
+                                                    {% if form.username.errors %}
+                                                    <p class="error">{{ form.username.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.email.label_tag }}
-                                                    {{ form.email }}
-                                                    {{ form.email.errors }}
+                                                    <label class="form__label" for="id_email">Email</label>
+                                                    <input class="common__login__input" type="email" name="email" id="id_email" placeholder="Your Email" required>
+                                                    {% if form.email.errors %}
+                                                    <p class="error">{{ form.email.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.password1.label_tag }}
-                                                    {{ form.password1 }}
-                                                    {{ form.password1.errors }}
+                                                    <label class="form__label" for="id_password1">Password</label>
+                                                    <input class="common__login__input" type="password" name="password1" id="id_password1" placeholder="Password" required>
+                                                    {% if form.password1.errors %}
+                                                    <p class="error">{{ form.password1.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-xl-6">
                                                 <div class="login__form">
-                                                    {{ form.password2.label_tag }}
-                                                    {{ form.password2 }}
-                                                    {{ form.password2.errors }}
+                                                    <label class="form__label" for="id_password2">Re-Enter Password</label>
+                                                    <input class="common__login__input" type="password" name="password2" id="id_password2" placeholder="Re-Enter Password" required>
+                                                    {% if form.password2.errors %}
+                                                    <p class="error">{{ form.password2.errors }}</p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
-                                        
                                             <div class="login__form d-flex justify-content-between flex-wrap gap-2">
                                                 <div class="form__check">
                                                     {{ form.agreed_to_terms }}
-                                                    {{ form.agreed_to_terms.label_tag }}
+                                                    <label for="accept_pp">Accept the Terms and Privacy Policy</label>
                                                 </div>
                                             </div>
-                                        
                                             <div class="login__button">
                                                 <button type="submit" class="default__button">Register</button>
                                             </div>
                                         </form>
                                         
     
+                                        <!-- <form method="post" action="{% url 'register' %}" class="row" style="margin-top: 20px;">
+                                            {% csrf_token %}
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_first_name" class="form__label" style="font-weight: bold;">{{ form.first_name.label }}</label>
+                                                    {{ form.first_name }}
+                                                    {% if form.first_name.errors %}
+                                                    <p class="error" style="color: red;">{{ form.first_name.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_last_name" class="form__label" style="font-weight: bold;">{{ form.last_name.label }}</label>
+                                                    {{ form.last_name }}
+                                                    {% if form.last_name.errors %}
+                                                    <p class="error" style="color: red;">{{ form.last_name.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_username" class="form__label" style="font-weight: bold;">{{ form.username.label }}</label>
+                                                    {{ form.username }}
+                                                    {% if form.username.errors %}
+                                                    <p class="error" style="color: red;">{{ form.username.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_email" class="form__label" style="font-weight: bold;">{{ form.email.label }}</label>
+                                                    {{ form.email }}
+                                                    {% if form.email.errors %}
+                                                    <p class="error" style="color: red;">{{ form.email.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_password1" class="form__label" style="font-weight: bold;">{{ form.password1.label }}</label>
+                                                    {{ form.password1 }}
+                                                    {% if form.password1.errors %}
+                                                    <p class="error" style="color: red;">{{ form.password1.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form">
+                                                    <label for="id_password2" class="form__label" style="font-weight: bold;">{{ form.password2.label }}</label>
+                                                    {{ form.password2 }}
+                                                    {% if form.password2.errors %}
+                                                    <p class="error" style="color: red;">{{ form.password2.errors }}</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__form d-flex justify-content-between flex-wrap gap-2">
+                                                    <div class="form__check">
+                                                        {{ form.agreed_to_terms }}
+                                                        <label for="id_agreed_to_terms" style="font-weight: bold;">{{ form.agreed_to_terms.label }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                                <div class="login__button">
+                                                    <button type="submit" class="default__button">Register</button>
+                                                </div>
+                                            </div>
+                                        </form> -->
+                                        
+                                        
+         
                                         <div class="login__social__option">
                                             <p>or Log-in with</p>
     

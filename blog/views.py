@@ -4,14 +4,14 @@ from participant.models import UserProfile
 from .models import Blog
 from .forms import BlogForm
 
-
+@login_required(login_url='login')
 def blog(request):
     user_profile = UserProfile.objects.get(user=request.user)
     blogs = Blog.objects.all()
     context = {'user_profile': user_profile, 'blogs': blogs}
     return render(request, 'blog.html', context)
 
-
+@login_required(login_url='login')
 def blog_details(request, blog_id):
     user_profile = UserProfile.objects.get(user=request.user)
     blog = get_object_or_404(Blog, pk=blog_id)

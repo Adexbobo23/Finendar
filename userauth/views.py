@@ -17,6 +17,9 @@ def register_participant(request):
 
             login(request, user)
             return redirect('login')
+        else:
+            print("Form Errors:", form.errors)
+            print("Form Data:", form.data)
     else:
         form = ParticipantRegistrationForm()
     return render(request, 'register.html', {'form': form})
