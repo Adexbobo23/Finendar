@@ -105,6 +105,15 @@ DATABASES = {
     }
 }
 
+# Email Setting
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.jexceltech.com.ng'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'admin@jexceltech.com.ng'
+EMAIL_HOST_PASSWORD = 'Adeolu967@321'
+
 # settings.py
 # STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
 
