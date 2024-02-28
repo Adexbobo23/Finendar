@@ -108,4 +108,7 @@ def activate_account(request, uidb64, token):
         return render(request, 'activation_success.html') 
     else:
         # Handle invalid activation link, e.g., display an error message or redirect to an error page
-        return render(request, 'activation_failure.html')  
+        return render(request, 'activation_failure.html') 
+
+
+# Reset Password
