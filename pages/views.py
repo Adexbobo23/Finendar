@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from courses.models import Course
+from blog.models import Blog
 
 # Create your views here.
 def home(request):
     courses = Course.objects.all()[:10]
+    blogs = Blog.objects.all()[:10]
     context = {
-        'courses': courses
+        'courses': courses,
+        'blogs': blogs
     }
     return render(request, 'index.html', context)
 
