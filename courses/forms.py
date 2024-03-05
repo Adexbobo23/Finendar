@@ -14,3 +14,22 @@ class CourseForm(forms.ModelForm):
         super(CourseForm, self).__init__(*args, **kwargs)
         for field_name in self.fields:
             self.fields[field_name].required = False
+
+
+from django import forms
+from .models import Question, Answer, Response
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['text', 'users']
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['question', 'text']
+
+class ResponseForm(forms.ModelForm):
+    class Meta:
+        model = Response
+        fields = ['user', 'question', 'answer']

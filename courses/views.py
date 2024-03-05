@@ -33,3 +33,7 @@ def course_details(request, course_id):
         'courses': courses
     }
     return render(request, 'course-details.html', context)
+
+
+def wbt(request):
+    return render(request, 'cbt.html')

@@ -61,3 +61,18 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class Question(models.Model):
+    text = models.CharField(max_length=255)
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='questions')
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    text = models.CharField(max_length=255)
+
+class Response(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
