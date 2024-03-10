@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import (
     create_project, all_courses, 
-    course_details, wbt
+    course_details, wbt,
+    UploadQuestionsView, TakeExamView, 
+    exam_result
     )
 
 urlpatterns = [
@@ -9,4 +11,7 @@ urlpatterns = [
     path('courses/', all_courses, name='all_courses'),
     path('course/<int:course_id>/', course_details, name='course_details'),
     path('wbt/', wbt, name='wbt'),
+    path('upload/', UploadQuestionsView.as_view(), name='upload_questions'),
+    path('exam/', TakeExamView.as_view(), name='take_exam'),
+    path('result/', exam_result, name='exam_result'),
 ]

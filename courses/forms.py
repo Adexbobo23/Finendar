@@ -17,19 +17,11 @@ class CourseForm(forms.ModelForm):
 
 
 from django import forms
-from .models import Question, Answer, Response
-
-class QuestionForm(forms.ModelForm):
-    class Meta:
-        model = Question
-        fields = ['text', 'users']
-
-class AnswerForm(forms.ModelForm):
-    class Meta:
-        model = Answer
-        fields = ['question', 'text']
+from .models import Response
 
 class ResponseForm(forms.ModelForm):
     class Meta:
         model = Response
-        fields = ['user', 'question', 'answer']
+        fields = ['answer']
+
+

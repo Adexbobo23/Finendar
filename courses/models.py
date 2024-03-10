@@ -64,9 +64,12 @@ class Course(models.Model):
 
 
 
+from django.db import models
+from django.conf import settings
+
 class Question(models.Model):
-    text = models.CharField(max_length=255)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='questions')
+    text = models.CharField(max_length=255)
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
