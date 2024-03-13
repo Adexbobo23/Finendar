@@ -67,7 +67,7 @@
                      <div class="col-6">
                          <ul class="list-unstyled p-0">
                              <li class="animate__animated animate__fadeInRight animate_50ms">
-                                 <input id="opt_{{ forloop.parentloop.counter }}_{{ forloop.counter }}" type="radio" name="selected_option" value="{{ option }}" onclick="selectOption(this)">
+                                 <input id="opt_{{ forloop.parentloop.counter }}_{{ forloop.counter }}" type="radio" name="selected_option_{{ forloop.parentloop.counter }}" value="{{ option }}" onclick="selectOption(this)">
                                  <label for="opt_{{ forloop.parentloop.counter }}_{{ forloop.counter }}" {% if option == question_data.correct_option %} class="correct_option" {% endif %}>{{ option }}</label>
                              </li>
                          </ul>

@@ -44,7 +44,6 @@ import pandas as pd
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Question, Answer, Response
-from .forms import ResponseForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -73,7 +72,7 @@ def upload_questions(request):
 def question_upload(request):
     return render(request, 'question-upload-success.html')
 
-
+@login_required(login_url='login')
 def question_list(request):
     questions = Question.objects.all()
     return render(request, 'wbt-grid.html', {'questions': questions})
@@ -106,9 +105,10 @@ def question_list(request):
 
 import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question
+from .models import Question, ExamScore
 import random
 
+@login_required(login_url='login')
 def take_exam(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     
@@ -117,7 +117,7 @@ def take_exam(request, question_id):
         correct_option = request.POST.get('correct_option')
         
         if selected_option == correct_option:
-            # Increment user's score or do any other required actions
+            # Increment user's score
             request.session.setdefault('score', 0)
             request.session['score'] += 1
 
@@ -138,13 +138,15 @@ def take_exam(request, question_id):
     return render(request, 'cbt.html', {'question': question, 'questions': questions})
 
 
+@login_required(login_url='login')
 def exam_result(request):
     # Retrieve the user's score from the session
-    score = request.session.get('score', 0)
+    score = request.session.pop('score', 0)
     
-    # Clear the session data for the next exam
-    request.session.pop('score', None)
+    # Save the score to the database
+    if request.user.is_authenticated:
+        exam_score = ExamScore.objects.create(user=request.user, score=score)
     
-    # You can implement further logic here if needed, such as saving the score to the database
+    # You can implement further logic here if needed
     
     return render(request, 'exam_result.html', {'score': score})

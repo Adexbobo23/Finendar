@@ -156,3 +156,12 @@ function fixStepIndicator(n) {
   //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
+
+// Function to handle radio button selection
+function selectOption(element) {
+    var selectedOption = element.value;
+    console.log("Selected option:", selectedOption);
+    // Mark the parent list item as selected
+    $(element).closest('ul').find('li').removeClass('selected');
+    $(element).closest('li').addClass('selected');
+}
