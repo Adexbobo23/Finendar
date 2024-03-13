@@ -68,6 +68,7 @@ def upload_questions(request):
 
     return render(request, 'upload_questions.html')
 
+
 @login_required(login_url='login')
 def question_upload(request):
     return render(request, 'question-upload-success.html')
