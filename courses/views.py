@@ -114,39 +114,37 @@ def take_exam(request, question_id):
     
     if request.method == 'POST':
         selected_option = request.POST.get('selected_option')
-        correct_option = request.POST.get('correct_option')  # Get the correct option from the form
-        
-        # Save the response if needed
-        # response = form.save(commit=False)
-        # response.user = request.user
-        # response.question = question
-        # response.selected_option = selected_option
-        # response.save()
+        correct_option = request.POST.get('correct_option')
         
         if selected_option == correct_option:
             # Increment user's score or do any other required actions
-            pass
+            request.session.setdefault('score', 0)
+            request.session['score'] += 1
 
-        # Redirect to exam result page
         return redirect('exam_result')
 
     else:  # GET request
         csv_file_path = question.csv_file.path
         questions_df = pd.read_csv(csv_file_path)
 
-        # Prepare data for rendering in the template
         questions = []
         for index, row in questions_df.iterrows():
             question_text = row['question_text']
             options = [row['option1'], row['option2'], row['option3'], row['option4']]
             correct_option = row['correct_option']
-            random.shuffle(options)  # Shuffle the options
+            random.shuffle(options)
             questions.append({'question_text': question_text, 'options': options, 'correct_option': correct_option})
 
     return render(request, 'cbt.html', {'question': question, 'questions': questions})
 
 
-
 def exam_result(request):
-    # Implement scoring logic here
-    return render(request, 'exam_result.html')
+    # Retrieve the user's score from the session
+    score = request.session.get('score', 0)
+    
+    # Clear the session data for the next exam
+    request.session.pop('score', None)
+    
+    # You can implement further logic here if needed, such as saving the score to the database
+    
+    return render(request, 'exam_result.html', {'score': score})
