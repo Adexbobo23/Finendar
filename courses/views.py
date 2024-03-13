@@ -73,6 +73,11 @@ def upload_questions(request):
 def question_upload(request):
     return render(request, 'question-upload-success.html')
 
+
+def question_list(request):
+    questions = Question.objects.all()
+    return render(request, 'wbt-grid.html', {'questions': questions})
+
 # @login_required(login_url='login')
 # def upload_questions(request):
 #     if request.method == 'POST':
