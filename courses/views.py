@@ -46,27 +46,56 @@ from django.views import View
 from .models import Question, Answer, Response
 from .forms import ResponseForm
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
-class UploadQuestionsView(View):
-    template_name = 'upload_questions.html'
+@login_required(login_url='login')
+def upload_questions(request):
+    if request.method == 'POST':
+        csv_file = request.FILES.get('csv_file')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
 
-    def get(self, request):
-        return render(request, self.template_name)
+        if csv_file and title:
+            question = Question.objects.create(
+                title=title,
+                description=description,
+                image=image,
+                csv_file=csv_file
+            )
+            question.users.add(request.user)
+            return redirect('question_success')
 
-    def post(self, request):
-        csv_file = request.FILES.get('file')
-        if csv_file is not None:
-            df = pd.read_csv(csv_file)
-            for _, row in df.iterrows():
-                question_text = row.get('question_text')  # Get the question text
-                correct_option = row.get('correct_option')  # Get the correct option
-                if question_text and correct_option:  # Check if question text and correct option are not None
-                    # Create the Question object
-                    question = Question.objects.create(text=question_text)
-                    # Create the Answer object with the correct option
-                    answer = Answer.objects.create(question=question, text=correct_option)
-            return redirect('home')
-        return render(request, self.template_name)
+    return render(request, 'upload_questions.html')
+
+@login_required(login_url='login')
+def question_upload(request):
+    return render(request, 'question-upload-success.html')
+
+# @login_required(login_url='login')
+# def upload_questions(request):
+#     if request.method == 'POST':
+#         csv_file = request.FILES.get('file')
+#         if csv_file is not None:
+#             # Get the currently logged-in user
+#             instructor = request.user
+#             df = pd.read_csv(csv_file)
+#             for _, row in df.iterrows():
+#                 question_text = row.get('question_text')  # Get the question text
+#                 options = [row.get('option1'), row.get('option2'), row.get('option3'), row.get('option4')]  # Get all options
+#                 correct_option = row.get('correct_option')  # Get the correct option
+#                 if question_text and all(options) and correct_option:  # Check if all required fields are not None
+#                     # Create the Question object and assign it to the instructor
+#                     question = Question.objects.create(text=question_text)
+#                     question.users.add(instructor)
+#                     # Create Answer objects for all options and mark the correct option
+#                     for option_text in options:
+#                         answer = Answer.objects.create(question=question, text=option_text)
+#                         if option_text == correct_option:
+#                             question.correct_answer = answer
+#                             question.save()
+#             return redirect('home')
+#     return render(request, 'upload_questions.html')
 
 
 class TakeExamView(View):

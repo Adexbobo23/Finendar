@@ -7,7 +7,11 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('text',)
+    list_display = ('display_users', 'title', 'csv_file', 'description')
+
+    def display_users(self, obj):
+        return ", ".join([user.username for user in obj.users.all()])
+    display_users.short_description = 'Users'
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):

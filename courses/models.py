@@ -64,12 +64,16 @@ class Course(models.Model):
 
 
 
+# models.py
 from django.db import models
 from django.conf import settings
 
 class Question(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='questions')
-    text = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='question_images/', blank=True, null=True)
+    csv_file = models.FileField(upload_to='csv_files/', default=True)
+    description = models.TextField(blank=True)
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
