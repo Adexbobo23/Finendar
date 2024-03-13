@@ -107,6 +107,7 @@ def question_list(request):
 import pandas as pd
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question
+import random
 
 def take_exam(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -138,7 +139,8 @@ def take_exam(request, question_id):
         for index, row in questions_df.iterrows():
             question_text = row['question_text']
             options = [row['option1'], row['option2'], row['option3'], row['option4']]
-            correct_option = row['correct_option']  # Add correct_option to options
+            correct_option = row['correct_option']
+            random.shuffle(options)  # Shuffle the options
             questions.append({'question_text': question_text, 'options': options, 'correct_option': correct_option})
 
     return render(request, 'cbt.html', {'question': question, 'questions': questions})

@@ -29,7 +29,7 @@ $(function(){
   });
 
   // =====================Progress Increment====================
-  $(document).on( 'click', '#nextBtn', function(){
+  $(document).on( 'click', '#nextBtn', function(event){
     var $progressbar = $('.count_progress');
     for (var i = 1; i<4; i++) {
       var className = 'clip-'+i;
@@ -38,9 +38,10 @@ $(function(){
         break;
       }
     }
+    event.preventDefault(); // Prevent default form submission behavior
   });
   // =====================Progress Decrement====================
-  $(document).on( 'click', '#prevBtn', function(){
+  $(document).on( 'click', '#prevBtn', function(event){
     var $progressbar = $('.count_progress');
     for (var i = 1; i<4; i++) {
       var className = 'clip-'+i;
@@ -49,6 +50,7 @@ $(function(){
         break;
       }
     }
+    event.preventDefault(); // Prevent default form submission behavior
   });
   
   // ================== CountDown function ================
@@ -81,8 +83,6 @@ function animateValue(obj, start, end, duration) {
 
 const obj = document.getElementById("value");
 animateValue(obj, 100, 0, 90000);
-
-
 
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -156,4 +156,3 @@ function fixStepIndicator(n) {
   //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
-
