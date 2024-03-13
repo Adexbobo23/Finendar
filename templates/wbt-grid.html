@@ -84,31 +84,29 @@
                                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12" data-aos="fade-up">
                                         <div class="gridarea__wraper gridarea__wraper__2">
                                             <div class="gridarea__img">
-                                                <a href="#"><img loading="lazy" src="{{ question.image.url }}" alt="{{ question.title }}"></a>
+                                                <a href="{% url 'take_exam' question.id %}">
+                                                    <img loading="lazy" src="{{ question.image.url }}" alt="{{ question.title }}">
+                                                </a>
                                                 <div class="gridarea__small__button">
                                                     <div class="grid__badge">{{ question.title }}</div>
                                                 </div>
                                             </div>
                                             <div class="gridarea__content">
                                                 <div class="gridarea__heading">
-                                                    <h3><a href="#">{{ question.title }}</a></h3>
+                                                    <h3><a href="{% url 'take_exam' question.id %}">{{ question.title }}</a></h3>
                                                 </div>
                                                 <div class="gridarea__list">
                                                     <ul>
-                                                        <!-- Add more details as needed -->
                                                         <li>
                                                             <i class="icofont-book-alt"></i> {{ question.description }}
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <!-- Add more details as needed -->
-                                                <div class="gridarea__bottom">
-                                                    <!-- Add more details as needed -->
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     {% endfor %}
+                                    
                                     
                                 </div>
 

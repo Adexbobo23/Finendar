@@ -104,38 +104,45 @@ def question_list(request):
 #     return render(request, 'upload_questions.html')
 
 
-class TakeExamView(View):
-    template_name = 'cbt.html'
+import pandas as pd
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Question
 
-    def get(self, request):
-        questions = Question.objects.all()
-        form = ResponseForm()
-        return render(request, self.template_name, {'questions': questions, 'form': form})
+def take_exam(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    
+    if request.method == 'POST':
+        selected_option = request.POST.get('selected_option')
+        correct_option = request.POST.get('correct_option')  # Get the correct option from the form
+        
+        # Save the response if needed
+        # response = form.save(commit=False)
+        # response.user = request.user
+        # response.question = question
+        # response.selected_option = selected_option
+        # response.save()
+        
+        if selected_option == correct_option:
+            # Increment user's score or do any other required actions
+            pass
 
-    def post(self, request):
-        form = ResponseForm(request.POST)
-        if form.is_valid():
-            user = request.user
-            question_id = request.POST.get('question')
-            selected_option = request.POST.get('selected_option')
+        # Redirect to exam result page
+        return redirect('exam_result')
 
-            question = get_object_or_404(Question, pk=question_id)
-            correct_option = question.answer_set.first().text
+    else:  # GET request
+        csv_file_path = question.csv_file.path
+        questions_df = pd.read_csv(csv_file_path)
 
-            if selected_option == correct_option:
-                # Increment user's score or do any other required actions
-                pass
+        # Prepare data for rendering in the template
+        questions = []
+        for index, row in questions_df.iterrows():
+            question_text = row['question_text']
+            options = [row['option1'], row['option2'], row['option3'], row['option4']]
+            correct_option = row['correct_option']  # Add correct_option to options
+            questions.append({'question_text': question_text, 'options': options, 'correct_option': correct_option})
 
-            # Save the response
-            response = form.save(commit=False)
-            response.user = user
-            response.question = question
-            response.selected_option = selected_option
-            response.save()
+    return render(request, 'cbt.html', {'question': question, 'questions': questions})
 
-            return redirect('exam_result')
-
-        return render(request, self.template_name, {'form': form})
 
 
 def exam_result(request):
