@@ -4,7 +4,7 @@ from .views import (
     course_details, wbt,
     upload_questions, 
     exam_result, question_upload,
-    question_list, take_exam
+    question_list, take_exam,add_to_cart
     )
 
 urlpatterns = [
@@ -17,4 +17,5 @@ urlpatterns = [
     path('result/', exam_result, name='exam_result'),
     path('success/', question_upload, name='question_success'),
     path('questions/', question_list, name='question_list'),
+    path('add_to_cart/<int:course_id>/', add_to_cart, name='add_to_cart'),
 ]

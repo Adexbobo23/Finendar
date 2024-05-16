@@ -809,14 +809,17 @@
                                 </div>
 
                                 <div class="course__summery__button">
-                                    <a class="default__button" href="#">Add To Cart</a>
+                                    <form action="{% url 'add_to_cart' course.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="default__button">Add To Cart</button>
+                                    </form>
                                     <a class="default__button default__button--2" href="#">Buy Now</a>
                                     <span>
                                         <i class="icofont-ui-rotation"></i>
                                         45-Days Money-Back Guarantee
                                     </span>
                                 </div>
-
+                                
                                 <div class="course__summery__lists">
                                     <ul>
                                         <li>

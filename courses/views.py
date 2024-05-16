@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm
-from .models import Course
+from .models import Course, CartItem
 from django.contrib.auth.decorators import login_required
 
 
@@ -24,13 +24,32 @@ def all_courses(request):
     return render(request, 'course.html', {'courses': courses})
 
 
+@login_required(login_url='login')
+def add_to_cart(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user,
+        course=course,
+    )
+
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return redirect('course_details', course_id=course_id)
+
+
 def course_details(request, course_id):
     course = get_object_or_404(Course, id=course_id)
-    # Fetch the latest 2 courses
     courses = Course.objects.order_by('-id')[:2]
+    
+    # Fetch cart items from the database
+    cart_items = CartItem.objects.filter(user=request.user)
+
     context = {
         'course': course,
-        'courses': courses
+        'courses': courses,
+        'cart_items': cart_items,
     }
     return render(request, 'course-details.html', context)
 
@@ -76,31 +95,6 @@ def question_upload(request):
 def question_list(request):
     questions = Question.objects.all()
     return render(request, 'wbt-grid.html', {'questions': questions})
-
-# @login_required(login_url='login')
-# def upload_questions(request):
-#     if request.method == 'POST':
-#         csv_file = request.FILES.get('file')
-#         if csv_file is not None:
-#             # Get the currently logged-in user
-#             instructor = request.user
-#             df = pd.read_csv(csv_file)
-#             for _, row in df.iterrows():
-#                 question_text = row.get('question_text')  # Get the question text
-#                 options = [row.get('option1'), row.get('option2'), row.get('option3'), row.get('option4')]  # Get all options
-#                 correct_option = row.get('correct_option')  # Get the correct option
-#                 if question_text and all(options) and correct_option:  # Check if all required fields are not None
-#                     # Create the Question object and assign it to the instructor
-#                     question = Question.objects.create(text=question_text)
-#                     question.users.add(instructor)
-#                     # Create Answer objects for all options and mark the correct option
-#                     for option_text in options:
-#                         answer = Answer.objects.create(question=question, text=option_text)
-#                         if option_text == correct_option:
-#                             question.correct_answer = answer
-#                             question.save()
-#             return redirect('home')
-#     return render(request, 'upload_questions.html')
 
 
 import pandas as pd

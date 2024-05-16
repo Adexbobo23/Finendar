@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Question, Answer, Response, ExamScore
+from .models import Course, Question, Answer, Response, ExamScore, CartItem
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
@@ -24,3 +24,7 @@ class ResponseAdmin(admin.ModelAdmin):
 @admin.register(ExamScore)
 class ExamScoreAdmin(admin.ModelAdmin):
     list_display = ('user', 'score')
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ['user', 'course', 'quantity', 'added_at']
