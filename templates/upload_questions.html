@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<body class="body__wrapper">
+ 
+
+    <main class="main_wrapper overflow-hidden">
+        {% block content %}
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Create WBT</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li>Upload Questions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static '/img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static '/img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static '/img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static '/img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+
+        <!-- become__instructor__start -->
+        <div class="create__course sp_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                        <div class="create__course__accordion__wraper">
+                            <div class="accordion" id="accordionExample">
+        
+                               <!-- Course Info -->
+                               <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Project Info
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="become__instructor__form">
+                                            <h1 style="text-align: center; margin-top: 50px; color: #333;">Upload Questions</h1>
+                                            <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+                                                {% csrf_token %}
+                                                
+                                                <label for="title">Title:</label>
+                                                <input type="text" id="title" name="title" placeholder="Title" style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; box-sizing: border-box;">
+                                                
+                                                <label for="description">Description:</label>
+                                                <textarea id="description" name="description" placeholder="Description" style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; box-sizing: border-box;"></textarea>
+                                                
+                                                <label for="image">Image:</label>
+                                                <input type="file" id="image" name="image" accept="image/*" style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; box-sizing: border-box;">
+                                                
+                                                <label for="csv_file">CSV File:</label>
+                                                <input type="file" id="csv_file" name="csv_file" accept=".csv" style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 300px; box-sizing: border-box;">
+                                                
+                                                <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Upload</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Side Content -->
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-12">
+                        <div class="create__course__wraper">
+                            <div class="create__course__title">
+                                <h4>Question Upload Tips</h4>
+                            </div>
+                            <div class="create__course__list">
+                                <ul>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Provide a clear and concise title for each question.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Upload relevant images or diagrams to enhance understanding.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Provide a detailed description or context for each question.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Ensure the CSV file contains all necessary data fields for each question.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Double-check for any errors or inconsistencies in the CSV file before uploading.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>        
+        {% endblock %}
+    </main>

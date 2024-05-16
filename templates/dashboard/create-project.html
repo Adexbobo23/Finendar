@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<body class="body__wrapper">
+ 
+
+    <main class="main_wrapper overflow-hidden">
+        {% block content %}
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Create Project</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li>Create Project</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static '/img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static '/img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static '/img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static '/img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+
+        <!-- become__instructor__start -->
+        <div class="create__course sp_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                        <div class="create__course__accordion__wraper">
+                            <div class="accordion" id="accordionExample">
+        
+                               <!-- Course Info -->
+                               <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Project Info
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="become__instructor__form">
+                                            <form method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {{ form.non_field_errors }}
+                                                {% for field in form %}
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                                    <div class="dashboard__form__wraper">
+                                                        <div class="dashboard__form__input">
+                                                            <label for="{{ field.id_for_label }}">
+                                                                {{ field.label }}
+                                                            </label>
+                                                            {{ field }}
+                                                            {% if field.help_text %}
+                                                            <small class="create__course__small">
+                                                                {{ field.help_text }}
+                                                            </small>
+                                                            {% endif %}
+                                                            {% for error in field.errors %}
+                                                            <div class="invalid-feedback">
+                                                                {{ error }}
+                                                            </div>
+                                                            {% endfor %}
+                                                            {% if field.errors %}
+                                                            <div class="invalid-feedback">
+                                                                {% for error in field.errors %}
+                                                                {{ field.label }}: {{ error }}
+                                                                {% endfor %}
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                                    <div class="dashboard__form__button create__course__margin">
+                                                        <button type="submit" class="default__button">Update Info</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Side Content -->
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-12">
+                        <div class="create__course__wraper">
+                            <div class="create__course__title">
+                                <h4>Project Upload Tips</h4>
+                            </div>
+                            <div class="create__course__list">
+                                <ul>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Set the project Price option make it free.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Standard size for the project thumbnail.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Video section controls the project overview video.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        project Builder is where you create project.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Add Topics in the project Builder section to create lessons, .
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Prerequisites refers to the fundamental projects .
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Information from the Additional Data section.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        {% endblock %}
+    </main>

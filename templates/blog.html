@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<body class="body__wrapper">
+  
+    <main class="main_wrapper overflow-hidden">
+
+        {% block content %}
+        <!-- breadcrumbarea__section__start -->
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Blog</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li>Blog</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static 'img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static 'img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static 'img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static 'img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+        <div class="blogarea__2 sp_top_100 sp_bottom_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                        {% for blog in blogs %}
+                        <div class="blog__content__wraper__2" data-aos="fade-up">
+                            <div class="blogarae__img__2">
+                                <img loading="lazy" src="{{ blog.image.url }}" alt="blog">
+                                <div class="blogarea__date__2">
+                                    <span>{{ blog.created_at.day }}</span>
+                                    <span class="blogarea__month">{{ blog.created_at|date:"M" }}</span>
+                                </div>
+                            </div>
+                            <div class="blogarea__text__wraper__2">
+                                <div class="blogarea__heading__2">
+                                    <h3><a href="{% url 'blog-details' blog.id %}">{{ blog.title }}</a></h3>
+                                </div>
+                                <div class="blogarea__list__2">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="icofont-business-man-alt-2"></i> {{ blog.author }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="icofont-speech-comments"></i> 0 Comments
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="icofont-eraser-alt"></i> Association
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="blogarea__paragraph">
+                                    <p>{{ blog.content }}</p>
+                                </div>
+                                <div class="blogarea__button__2">
+                                    <a href="{% url 'blog-details' blog.id %}">READ MORE <i class="icofont-double-right"></i></a>
+                                    <a href="#">
+                                        <div class="blogarea__icon__2">
+                                            <i class="icofont-share"></i>
+                                            <i class="icofont-heart"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="main__pagination__wrapper" data-aos="fade-up">
+                            <ul class="main__page__pagination">
+                                <li><a class="disable" href="#"><i class="icofont-double-left"></i></a></li>
+                                <li><a class="active" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#"><i class="icofont-double-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Search here</h4>
+                            <form action="#">
+                                <div class="blogsudebar__input__area">
+                                    <input type="text" name="search" placeholder="Search product">
+                                    <button class="blogsidebar__input__icon">
+                                        <i class="icofont-search-1"></i>
+                                    </button>
+
+
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">categories</h4>
+                            <ul class="categorie__list">
+                                <li><a href="#">Mobile Set <span>03</span></a></li>
+                                <li><a href="#">Mobile Set <span>03</span></a></li>
+                                <li><a href="#">Raxila Dish nonyte<span>09</span></a></li>
+                                <li><a href="#">Fresh Vegetable <span>01</span></a></li>
+                                <li><a href="#">Fruites <span>00</span></a></li>
+                                <li><a href="#">Gesuriesey <span>26</span></a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Recent Post</h4>
+                            <ul class="recent__list">
+                                <li>
+                                    <div class="recent__img">
+                                        <a href="#">
+                                            <img loading="lazy"  src="{% static 'img/blog/blog_11.png' %}" alt="sidbar">
+                                            <div class="recent__number">
+                                                <span>01</span>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="recent__text">
+
+                                        <div class="recent__date">
+                                            <a href="#">23 December 2023</a>
+                                        </div>
+
+                                        <h6><a href="blog-deetails.html">Show at the University </a></h6>
+
+
+
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Get in Touch</h4>
+                            <div class="get__touch__input">
+                                <input type="text" placeholder="Enter name*">
+                                <input type="text" placeholder="Enter your mail*">
+                                <input type="text" placeholder="Massage*">
+                                <a class="default__button" href="blog-detailss.html">SEND MASSAGE</a>
+                            </div>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Popular tag</h4>
+                            <div class="populer__tag__list">
+                                <ul>
+                                    <li><a href="{% url 'blog' %}">Business</a></li>
+                                    <li><a href="{% url 'blog' %}">Design</a></li>
+                                    <li><a href="{% url 'blog' %}">apps</a></li>
+                                    <li><a href="{% url 'blog' %}">landing page</a></li>
+                                    <li><a href="{% url 'blog' %}">data</a></li>
+                                    <li><a href="{% url 'blog' %}">book</a></li>
+                                    <li><a href="{% url 'blog' %}">Design</a></li>
+                                    <li><a href="{% url 'blog' %}">book</a></li>
+                                    <li><a href="{% url 'blog' %}">landing page</a></li>
+                                    <li><a href="{% url 'blog' %}">data</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Follow Us</h4>
+                            <div class="follow__icon">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="icofont-facebook"></i></a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#"><i class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+    </main>

@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<body class="body__wrapper">
+    <main class="main_wrapper overflow-hidden">
+        {% block content %}
+        <!-- breadcrumbarea__section__start -->
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Blog Details</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li>Blog page</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static 'img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static 'img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static 'img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static 'img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+        <div class="blogarea__2 sp_top_100 sp_bottom_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                        <div class="blog__details__content__wraper">
+                            <div class="blog__details__img" data-aos="fade-up">
+                                <img loading="lazy" src="{{ blog.image.url }}" alt="blog">
+                            </div>
+                            <div class="blog__details__content">
+                                <p class="content__1" data-aos="fade-up">{{ blog.content }}</p>
+                                <!-- <div class="blog__details__heading" data-aos="fade-up">
+                                    <h5>{{ blog.title }}</h5>
+                                </div> -->
+                            </div>
+                            
+                            <!-- Additional content from the blog model -->
+                            <!-- <div class="blockquate__wraper" data-aos="fade-up">
+                                <div class="blockquate__content">
+                                    <h3>{{ blog.title }}</h3>
+                                    <a href="#">{{ blog.author.username }}</a>
+                                </div>
+                                <div class="blockquate__img">
+                                    <img loading="lazy" src="{% static '{{ blog.image.url }}' %}" alt="img">
+                                </div>
+                            </div> -->
+                            
+                            <div class="blog__details__tag" data-aos="fade-up">
+                                <ul>
+                                    <li class="heading__tag">
+                                        Tag
+                                    </li>
+                                    <li>
+                                        <a href="#">Business</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">apps</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">data</a>
+                                    </li>
+                                </ul>
+                                <ul class="share__list" data-aos="fade-up">
+                                    <li class="heading__tag">
+                                        Share
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="blog__details__form" data-aos="fade-up">
+                                <div class="blog__details__input__heading">
+                                    <h5>Write your comment</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="blog__details__input">
+                                            <input type="text" placeholder="Enter your name*">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="blog__details__input">
+                                            <input type="text" placeholder="Enter your mail**">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="blog__details__input">
+                                            <input type="text" placeholder="Enter your  number*">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="blog__details__input">
+                                            <input type="text" placeholder="Website*">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="blog__details__input">
+                                            <textarea cols="30" rows="10">Enter your Massage*</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="blog__check__box">
+                                    <input type="checkbox" checked="checked"> Save my name, email, and website in this browser for the next time I comment.
+                                </div>
+                            </div>
+                            <div class="blog__details__button">
+                                <a class="default__button" href="#">Post a Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Search here</h4>
+                            <form action="#">
+                                <div class="blogsudebar__input__area">
+                                    <input type="text" name="search" placeholder="Search product">
+                                    <button class="blogsidebar__input__icon">
+                                        <i class="icofont-search-1"></i>
+                                    </button>
+
+
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">categories</h4>
+                            <ul class="categorie__list">
+                                <li><a href="#">Mobile Set <span>03</span></a></li>
+                                <li><a href="#">Mobile Set <span>03</span></a></li>
+                                <li><a href="#">Raxila Dish nonyte<span>09</span></a></li>
+                                <li><a href="#">Fresh Vegetable <span>01</span></a></li>
+                                <li><a href="#">Fruites <span>00</span></a></li>
+                                <li><a href="#">Gesuriesey <span>26</span></a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Recent Post</h4>
+                            <ul class="recent__list">
+                                {% for recent_blog in blogs %}
+                                <li>
+                                    <div class="recent__img">
+                                        <a href="#">
+                                            <img loading="lazy" src="{{ recent_blog.image.url }}" alt="sidbar">
+                                            <div class="recent__number">
+                                                <span>{{ forloop.counter }}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="recent__text">
+                                        <div class="recent__date">
+                                            <a href="#">{{ recent_blog.created_at|date:"d F Y" }}</a>
+                                        </div>
+                                        <h6><a href="{% url 'blog-details' blog_id=recent_blog.id %}">{{ recent_blog.title }}</a></h6>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Get in Touch</h4>
+                            <div class="get__touch__input">
+                                <input type="text" placeholder="Enter name*">
+                                <input type="text" placeholder="Enter your mail*">
+                                <input type="text" placeholder="Massage*">
+                                <a class="default__button" href="blog-details.html">SEND MASSAGE</a>
+                            </div>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Popular tag</h4>
+                            <div class="populer__tag__list">
+                                <ul>
+                                    <li><a href="{% url 'blog'%}">Business</a></li>
+                                    <li><a href="{% url 'blog'%}">Design</a></li>
+                                    <li><a href="{% url 'blog'%}">apps</a></li>
+                                    <li><a href="{% url 'blog'%}">landing page</a></li>
+                                    <li><a href="{% url 'blog'%}">data</a></li>
+                                    <li><a href="{% url 'blog'%}">book</a></li>
+                                    <li><a href="{% url 'blog'%}">Design</a></li>
+                                    <li><a href="{% url 'blog'%}">book</a></li>
+                                    <li><a href="{% url 'blog'%}">landing page</a></li>
+                                    <li><a href="{% url 'blog'%}">data</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                            <h4 class="sidebar__title">Follow Us</h4>
+                            <div class="follow__icon">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="icofont-facebook"></i></a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#"><i class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icofont-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>

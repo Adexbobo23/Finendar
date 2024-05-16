@@ -1,0 +1,741 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<body class="body__wrapper">
+    
+    <main class="main_wrapper overflow-hidden">
+
+        {% block content %}
+        <!-- breadcrumbarea__section__start -->
+        <div class="breadcrumbarea" data-aos="fade-up">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">About</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li> About</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static 'img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static 'img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static 'img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static 'img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+        <!-- aboutarea__5__section__start -->
+        <div class="aboutarea__5 sp_bottom_100 sp_top_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-up">
+                        <div class="aboutarea__5__img" data-tilt>
+                            <img loading="lazy"  src="{% static 'img/finendar/7.jpeg' %}" alt="about">
+                        </div>
+                        <div class="aboutarea__5__img" data-tilt style="margin-top: 20px;">
+                            <img loading="lazy"  src="{% static 'img/finendar/2.jpeg' %}" alt="about">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6" data-aos="fade-up">
+                        <div class="aboutarea__content__wraper__5">
+                            <div class="section__title">
+                                <div class="section__title__button">
+                                    <div class="default__small__button">About us</div>
+                                </div>
+                                <div class="section__title__heading ">
+                                    <h2>Welcome to FINENDAR</h2>
+                                </div>
+                            </div>
+                            <div class="about__text__5">
+                                <p>Finendar was launched as a digital product by GlobeWorka in 2024 and as a technology platform to address certain problems associated with audience engagement beit as an educator, trainer, assessor, influencer, researcher, brand/marketing promoter or survey-data analyst while engaging in business activities both in the digital space and otherwise. </p>
+                            </div>
+
+                            <div class="aboutarea__5__small__icon__wraper">
+                                <div class="aboutarea__5__small__icon">
+                                    <img loading="lazy"  src="{% static 'img/about/about_15.png' %}" alt="about">
+
+                                </div>
+                                <div class="aboutarea__small__heading">
+                                    Created by Expert with <span>decades of Experience In</span> audience engagement
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="aboutarea__para__5">
+                                <p>Finendar is basically a learning enhancement tool that gives the creator the luxury of an ICT unit where running a WBT/CBT becomes easy and at little or zero cost. Setting up a customised test or survey becomes real-time at zero maintenance cost, where control is 100% and need for experts, paper, machines or prints is eliminated completely.
+
+                                    With Finendar,  rewarding the audience in whatever ways is within the control of the content or project creator and as a recruiter, interviewer, HR consultant, course facilitator assessor or educator, the flexibility of the platform is limitless. 
+                                    
+                                 </p>
+                            </div>
+
+                            <div class="aboutarea__bottom__button__5">
+                                <a class="default__button" href="{% url 'all_courses' %}">Explore More
+                                        <i class="icofont-long-arrow-right"></i>
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- aboutarea__5__section__end -->
+
+        <!-- about__tap__section__start -->
+        <div class="abouttabarea sp_bottom_70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12" data-aos="fade-up">
+                        <ul class="nav  about__button__wrap" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="single__tab__link active" data-bs-toggle="tab" data-bs-target="#projects__one" type="button">About</button>
+                            </li>
+                            <!-- <li class="nav-item" role="presentation">
+                                <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__two" type="button">Course</button>
+                            </li> -->
+                            <li class="nav-item" role="presentation">
+                                <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__three" type="button">awards</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__four" type="button">education</button>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="tab-content tab__content__wrapper" id="myTabContent" data-aos="fade-up">
+
+                        <div class="tab-pane fade active show" id="projects__one" role="tabpanel" aria-labelledby="projects__one">
+                            <div class="col-xl-12">
+                                <div class="aboutarea__content__tap__wraper">
+                                    <p class="paragraph__1">
+                                        Finendar, born from the innovative minds at GlobeWorka in 2024, emerged as a digital solution to revolutionize audience engagement across various sectors such as education, training, entertainment, influencing, assessment, research, marketing, and data analysis. 
+                                        Our mission will empower individuals and organizations to monetize their skills and content, measure impact, and foster audience loyalty.
+                                    </p>
+                                    <p>
+                                        Finendar allows the user to switch modes and generate income both passively and actively,  the opportunity is endless.
+                                    </p>
+                                    <p>
+                                        Finendar is an HR tool designed to make remote training workshops achieve better results by further simplifying recruitment processes, induction  for new recruits and large staff training regardless of distance and on a global scale.
+
+                                        It is safe and allows easy integration with other social platforms while security is not compromised. If YouTube, Facebook, tiktok, Twitter(X), WhatsApp or Instagram is the creator's thing then Finendar is here to help achieve more and manage  feedbacks towards greater maximisation
+                                    </p>
+
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Our Mission</h5>
+                                        <p>
+                                            Building Sustainable Circular Audience Engagement and Reward System (SCAERS) to drive effectiveness, efficiency and empowerment on a global scale. 
+
+                                        </p>
+                                    </div>
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Our Vission</h5>
+                                        <p>
+                                            Fuelling economic drives through sustainable audience engagement and educational solutions with cutting edge innovations to maximise resources,  empower stakeholders and eliminate waste.
+                                        </p>
+                                    </div>
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Corporate Tagline</h5>
+                                        <p>
+                                            Do more, do better.
+                                        </p>
+                                    </div>
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Our Core Values</h5>
+                                        <ul>
+                                            <li><b>L</b>eadership: inspiring, motivating, and guiding creative minds towards enhanced and greater productivity.</li>
+                                            <li><b>I</b>nnovation: Providing cutting-edge solutions to simplify processes and eliminate barriers.</li>
+                                            <li><b>F</b>lexibility: Offering limitless possibilities for creators, educators, and recruiters.</li>
+                                            <li><b>E</b>ffectiveness: Measuring impact and ensuring effectiveness in audience engagement.</li>
+                                        </ul>
+                                    </div>
+                                    
+
+                                    <div class="aboutarea__tap__heading">
+                                        <!-- <h5>Web and user interface design - Development</h5> -->
+                                        <p>
+                                            With Finendar, creators gain the ability to monetize their content effortlessly, engage their audience effectively, and reward them for their participation. Our platform serves as a versatile learning enhancement tool, facilitating the creation and management of web-based training (WBT) and computer-based training (CBT) with ease and minimal cost.
+                                        </p>
+                                    </div>
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Unique Features</h5>
+                                        <ul>
+                                            <li>Customized Testing and Surveys: Real-time creation and deployment of tests and surveys without maintenance costs.</li>
+                                            <li>Audience Reward System: Empowering creators to reward their audience for engagement and loyalty.</li>
+                                            <li>Integrated HR Solutions: Simplifying remote training, recruitment, and induction processes for organizations worldwide.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="projects__two" role="tabpanel" aria-labelledby="projects__two">
+
+                            <div class="gridarea__wraper gridarea__wraper__2 gridarea__course__list" data-aos="fade-up">
+                                <div class="gridarea__img">
+                                    <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_1.png' %}" alt="grid"></a>
+                                    <div class="gridarea__small__button">
+                                        <div class="grid__badge">Data & Tech</div>
+                                    </div>
+                                    <div class="gridarea__small__icon">
+                                        <a href="#"><i class="icofont-heart-alt"></i></a>
+                                    </div>
+
+                                </div>
+                                <div class="gridarea__content">
+                                    <div class="gridarea__list">
+                                        <ul>
+                                            <li>
+                                                <i class="icofont-book-alt"></i> 23 Lesson
+                                            </li>
+                                            <li>
+                                                <i class="icofont-clock-time"></i> 1 hr 30 min
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="gridarea__heading">
+                                        <h3><a href="course-details.html">Become a product Manager learn the
+                                                        skills & job.
+                                                    </a></h3>
+                                    </div>
+                                    <div class="gridarea__price">
+                                        $32.00 <del>/ $67.00</del>
+                                        <span>Free.</span>
+
+                                    </div>
+                                    <div class="gridarea__bottom">
+                                        <div class="gridarea__bottom__left">
+                                            <a href="instructor-details.html">
+                                                <div class="gridarea__small__img">
+                                                    <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
+                                                    <div class="gridarea__small__content">
+                                                        <h6>Mirnsdo .H</h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <div class="gridarea__star">
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <span>(44)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="gridarea__details">
+                                            <a href="course-details.html">Know Details
+                                                        <i class="icofont-arrow-right"></i>
+                                                    </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="gridarea__wraper gridarea__wraper__2 gridarea__course__list" data-aos="fade-up">
+                                <div class="gridarea__img">
+                                    <img loading="lazy"  src="{% static 'img/grid/grid_2.png' %}" alt="grid">
+                                    <div class="gridarea__small__button">
+                                        <div class="grid__badge blue__color">Mechanical</div>
+                                    </div>
+                                    <div class="gridarea__small__icon">
+                                        <a href="#"><i class="icofont-heart-alt"></i></a>
+                                    </div>
+
+                                </div>
+                                <div class="gridarea__content">
+                                    <div class="gridarea__list">
+                                        <ul>
+                                            <li>
+                                                <i class="icofont-book-alt"></i> 23 Lesson
+                                            </li>
+                                            <li>
+                                                <i class="icofont-clock-time"></i> 1 hr 30 min
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="gridarea__heading">
+                                        <h3><a href="course-details.html">Foundation course to under stand
+                                                    about softwere</a></h3>
+                                    </div>
+                                    <div class="gridarea__price">
+                                        $32.00 <del>/ $67.00</del>
+                                        <span>Free.</span>
+
+                                    </div>
+                                    <div class="gridarea__bottom">
+                                        <div class="gridarea__bottom__left">
+                                            <a href="instructor-details.html">
+                                                <div class="gridarea__small__img">
+                                                    <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
+                                                    <div class="gridarea__small__content">
+                                                        <h6>Mirnsdo .H</h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <div class="gridarea__star">
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <span>(44)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="gridarea__details">
+                                            <a href="course-details.html">Know Details
+                                                    <i class="icofont-arrow-right"></i>
+                                                </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="gridarea__wraper gridarea__wraper__2 gridarea__course__list" data-aos="fade-up">
+                                <div class="gridarea__img">
+                                    <a href="course-details.html"><img loading="lazy"  src="{% static 'img/grid/grid_3.png' %}" alt="grid"></a>
+                                    <div class="gridarea__small__button">
+                                        <div class="grid__badge pink__color">Development</div>
+                                    </div>
+                                    <div class="gridarea__small__icon">
+                                        <a href="#"><i class="icofont-heart-alt"></i></a>
+                                    </div>
+
+                                </div>
+                                <div class="gridarea__content">
+                                    <div class="gridarea__list">
+                                        <ul>
+                                            <li>
+                                                <i class="icofont-book-alt"></i> 23 Lesson
+                                            </li>
+                                            <li>
+                                                <i class="icofont-clock-time"></i> 1 hr 30 min
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="gridarea__heading">
+                                        <h3><a href="course-details.html">Strategy law and with for organization
+                                                    Foundation 
+                                                </a></h3>
+                                    </div>
+                                    <div class="gridarea__price">
+                                        $32.00 <del>/ $67.00</del>
+                                        <span>Free.</span>
+
+                                    </div>
+                                    <div class="gridarea__bottom">
+                                        <div class="gridarea__bottom__left">
+                                            <a href="instructor-details.html">
+                                                <div class="gridarea__small__img">
+                                                    <img loading="lazy"  src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid">
+                                                    <div class="gridarea__small__content">
+                                                        <h6>Mirnsdo .H</h6>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <div class="gridarea__star">
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <i class="icofont-star"></i>
+                                                <span>(44)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="gridarea__details">
+                                            <a href="course-details.html">Know Details
+                                                    <i class="icofont-arrow-right"></i>
+                                                </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="projects__three" role="tabpanel" aria-labelledby="projects__three">
+                            <div class="col-xl-12">
+                                <div class="aboutarea__content__tap__wraper">
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="single__event__wraper single__award" data-aos="fade-up">
+                                                <div class="eventarea__img">
+                                                    <img loading="lazy"  src="{% static 'img/about/award-1.jpg' %}" alt="event">
+                                                </div>
+                                                <div class="eventarea__content__wraper">
+                                                    <div class="single__event__heading">
+                                                        <h4><a href="event-details.html">Forging relationships between national</a></h4>
+                                                    </div>
+                                                    <div class="single__event__button">
+                                                        <a href="event-details.html">Read More <i class="icofont-simple-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="single__event__wraper single__award" data-aos="fade-up">
+                                                <div class="eventarea__img">
+                                                    <img loading="lazy"  src="{% static 'img/about/award-2.jpg' %}" alt="event">
+                                                </div>
+                                                <div class="eventarea__content__wraper">
+                                                    <div class="single__event__heading">
+                                                        <h4><a href="event-details.html">Lorem ipsum dolor sit amet conse ctetur.</a></h4>
+                                                    </div>
+                                                    <div class="single__event__button">
+                                                        <a href="event-details.html">Read More <i class="icofont-simple-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="single__event__wraper single__award" data-aos="fade-up">
+                                                <div class="eventarea__img">
+                                                    <img loading="lazy"  src="{% static 'img/about/award-3.jpg' %}" alt="event">
+                                                </div>
+                                                <div class="eventarea__content__wraper">
+                                                    <div class="single__event__heading">
+                                                        <h4><a href="event-details.html">Forging relationships between national</a></h4>
+                                                    </div>
+                                                    <div class="single__event__button">
+                                                        <a href="event-details.html">Read More <i class="icofont-simple-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                            <div class="single__event__wraper single__award" data-aos="fade-up">
+                                                <div class="eventarea__img">
+                                                    <img loading="lazy"  src="{% static 'img/about/award-4.jpg' %}" alt="event">
+                                                </div>
+                                                <div class="eventarea__content__wraper">
+                                                    <div class="single__event__heading">
+                                                        <h4><a href="event-details.html">Lorem ipsum dolor sit amet conse ctetur.</a></h4>
+                                                    </div>
+                                                    <div class="single__event__button">
+                                                        <a href="event-details.html">Read More <i class="icofont-simple-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="projects__four" role="tabpanel" aria-labelledby="projects__four">
+                            <div class="col-xl-12">
+                                <div class="aboutarea__content__tap__wraper">
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>World best education site - (Computer engeenering)</h5>
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are
+                                            going to useery</p>
+                                    </div>
+
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Web and user interface design - Development</h5>
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are
+                                            going to useery</p>
+                                    </div>
+                                    <div class="aboutarea__tap__heading">
+                                        <h5>Interaction design - Animation</h5>
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are
+                                            going to useery</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- .about__tap__section__end -->
+        
+        <div class="gridarea__2 sp_bottom_100" data-aos="fade-up">
+            <div class="container">
+
+                <div class="section__title">
+                    <div class="section__title__button">
+                        <div class="default__small__button">Popular Courses / Projects</div>
+                    </div>
+                    <div class="section__title__heading">
+                        <h2>Choose The Best Package
+                            <br>For your Learning</h2>
+                    </div>
+                </div>
+
+                <div class="row about__course__slider__active row__custom__class">
+                    {% for course in courses %}
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 grid-item column__custom__class">
+                        <div class="gridarea__wraper">
+                            <div class="gridarea__img">
+                                <a href="{% url 'course_details' course.pk %}"><img loading="lazy" src="{{ course.course_image.url }}" alt="grid"></a>
+                                <div class="gridarea__small__button gridarea__small__button__1">
+                                    <div class="grid__badge">{{ course.language }}</div>
+                                </div>
+                                <div class="gridarea__small__icon">
+                                    <a href="#"><i class="icofont-heart-alt"></i></a>
+                                </div>
+                            </div>
+                            <div class="gridarea__content">
+                                <div class="gridarea__list">
+                                    <ul>
+                                        <li>
+                                            <i class="icofont-book-alt"></i> {{ course.lesson_set }}
+                                        </li>
+                                        <li>
+                                            <i class="icofont-clock-time"></i> {{ course.duration }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="gridarea__heading">
+                                    <h3><a href="{% url 'course_details' course.id %}">{{ course.title }}</a></h3>
+                                </div>
+                                <div class="gridarea__price">
+                                    ${{ course.discounted_price }} <del>/ ${{ course.free_regular_price }}</del>
+                                    <span><del class="del__2">Free</del></span>
+                                </div>
+                                <div class="gridarea__bottom">
+                                    <a href="{% url 'instructor_details' course.user.instructor.id %}">
+                                        <div class="gridarea__small__img">
+                                            <!-- <img loading="lazy" src="{% static 'img/grid/grid_small_1.jpg' %}" alt="grid"> -->
+                                            <div class="gridarea__small__content">
+                                                <h6>{{ course.user.get_full_name }}</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="gridarea__star">
+                                        <i class="icofont-star"></i>
+                                        <i class="icofont-star"></i>
+                                        <i class="icofont-star"></i>
+                                        <i class="icofont-star"></i>
+                                        <i class="icofont-star"></i>
+                                        <span>(44)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- testmonialarea__section__atart -->
+        <div class="testmonialarea sp_top_100 sp_bottom_110">
+            <div class="container">
+                <div class="row" data-aos="fade-up">
+                    <div class="section__title text-center">
+                        <div class="section__title__button">
+                            <div class="default__small__button">Course List</div>
+                        </div>
+                        <div class="section__title__heading heading__underline">
+                            <h2>Client <span>Testimonial</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row__custom__class testimonial__slider__active default__arrow" data-aos="fade-up">
+                    <div class="col-xl-6 column__custom__class">
+                        <div class="single__testimonial__wraper">
+                            <div class="single__testimonial__inner">
+                                <div class="testimonial__img">
+                                    <img loading="lazy"  src="{% static 'img/testimonial/testi_1.png' %}" alt="testi">
+                                    <div class="testimonial__name">
+                                        <h6>Mirnsdo Jons</h6>
+                                        <span>Ui/Ux Designer</span>
+                                    </div>
+                                </div>
+                                <div class="testimonial__icon">
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star dark__color"></i>
+                                </div>
+                            </div>
+
+                            <div class="testimonial__content">
+                                <p>The other hand we denounce with righteou indg ation men who are so beguiled and demoraliz ed by the of the mo ment.Dislike men who are so beguiled and dems ed by the charms of pleas ure of the moment. Lorem </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-6 column__custom__class">
+                        <div class="single__testimonial__wraper">
+                            <div class="single__testimonial__inner">
+                                <div class="testimonial__img">
+                                    <img loading="lazy"  src="{% static 'img/testimonial/testi_1.png' %}" alt="testi">
+                                    <div class="testimonial__name">
+                                        <h6>Mirnsdo Jons</h6>
+                                        <span>Ui/Ux Designer</span>
+                                    </div>
+                                </div>
+                                <div class="testimonial__icon">
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star dark__color"></i>
+                                </div>
+                            </div>
+
+                            <div class="testimonial__content">
+                                <p>The other hand we denounce with righteou indg ation men who are so beguiled and demoraliz ed by the of the mo ment.Dislike men who are so beguiled and dems ed by the charms of pleas ure of the moment. Lorem </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-6 column__custom__class">
+                        <div class="single__testimonial__wraper">
+                            <div class="single__testimonial__inner">
+                                <div class="testimonial__img">
+                                    <img loading="lazy"  src="{% static 'img/testimonial/testi_1.png' %}" alt="testi">
+                                    <div class="testimonial__name">
+                                        <h6>Mirnsdo Jons</h6>
+                                        <span>Ui/Ux Designer</span>
+                                    </div>
+                                </div>
+                                <div class="testimonial__icon">
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star dark__color"></i>
+                                </div>
+                            </div>
+
+                            <div class="testimonial__content">
+                                <p>The other hand we denounce with righteou indg ation men who are so beguiled and demoraliz ed by the of the mo ment.Dislike men who are so beguiled and dems ed by the charms of pleas ure of the moment. Lorem </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-6 column__custom__class">
+                        <div class="single__testimonial__wraper">
+                            <div class="single__testimonial__inner">
+                                <div class="testimonial__img">
+                                    <img loading="lazy"  src="{% static 'img/testimonial/testi_1.png' %}" alt="testi">
+                                    <div class="testimonial__name">
+                                        <h6>Mirnsdo Jons</h6>
+                                        <span>Ui/Ux Designer</span>
+                                    </div>
+                                </div>
+                                <div class="testimonial__icon">
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <i class="icofont-star dark__color"></i>
+                                </div>
+                            </div>
+
+                            <div class="testimonial__content">
+                                <p>The other hand we denounce with righteou indg ation men who are so beguiled and demoraliz ed by the of the mo ment.Dislike men who are so beguiled and dems ed by the charms of pleas ure of the moment. Lorem </p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- testmonialarea__section__end-->
+
+        <!-- brand__section__start -->
+        <div class="brandarea sp_bottom_60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12" data-aos="fade-up">
+                        <div class="section__title text-center">
+
+                            <div class="section__title__heading heading__underline">
+                                <h2>Relied on marketers trusted by engineers and
+                                    <br>Beloved by <span>Executives</span></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="brandarea__wraper" data-aos="fade-up">
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_1.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_2.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_3.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_4.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_5.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_6.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_7.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_8.png' %}" alt="brand"></a>
+                        </div>
+                        <div class="brandarea__img">
+                            <a href="#"><img loading="lazy"  src="{% static 'img/brand/brand_9.png' %}" alt="brand"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- brand__section__end -->
+        {% endblock %}
+
+    </main>
+

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<body class="body__wrapper">
+    <main class="main_wrapper overflow-hidden">
+        {% block  content %}
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Project Details</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li>Project Details</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static 'img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static 'img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static 'img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static 'img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+        <div class="blogarea__2 sp_top_100 sp_bottom_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="blogarae__img__2 course__details__img__2" data-aos="fade-up"> 
+                            {% if project.project_image %}
+                            <img loading="lazy" src="{{ project.project_image.url }}" alt="{{ project.project_name }}">
+                            {% else %}
+                            <!-- Placeholder image or text for projects without an image -->
+                            <span>No Image Available</span>
+                            {% endif %}
+                        </div>
+                    
+                        <div class="blog__details__content__wraper">
+                            <div class="course__details__heading" data-aos="fade-up">
+                                <h3>{{ project.project_name }}</h3>
+                            </div>
+                            <div class="course__details__price" data-aos="fade-up">
+                                <ul>
+                                    <li>
+                                        <div class="course__details__date">
+                                            <i class="icofont-clock-time"></i> Deadline: {{ project.deadline_date }}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="course__details__paragraph" data-aos="fade-up">
+                                <p>{{ project.project_description }}</p>
+                            </div>
+                    
+                            <h4 class="sidebar__title" data-aos="fade-up">Project Details</h4>
+                            <div class="course__details__wraper" data-aos="fade-up">
+                                <ul>
+                                    <li>
+                                        Creator: <span>{{ project.creator }}</span>
+                                    </li>
+                                    <li>
+                                        Participants:
+                                        <ul>
+                                            {% for participant in project.participants.all %}
+                                            <li>{{ participant }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Project Code: <span>{{ project.project_code }}</span>
+                                    </li>
+                                    <!-- Add more project details as needed -->
+                                </ul>
+                            </div>
+                    
+                            <!-- Add more sections for project details as needed -->
+                    
+                            <div class="blog__details__button" data-aos="fade-up">
+                                <a class="default__button" href="#">Edit Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                    <div class="col-xl-4 col-lg-4">
+
+                        <div class="course__details__sidebar">
+                            <div class="event__sidebar__wraper" data-aos="fade-up">
+
+
+                                <div class="blogarae__img__2 course__details__img__2" data-aos="fade-up">
+                                    <img loading="lazy"  src="{% static 'img/blog/blog_7.png' %}" alt="blog">
+
+                                    <div class="registerarea__content course__details__video">
+                                        <div class="registerarea__video">
+                                            <div class="video__pop__btn">
+                                                <a class="video-btn" href="https://www.youtube.com/watch?v=vHdclsdkp28"> <img loading="lazy"  src="{% static 'img/icon/video.png' %}" alt=""></a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="event__price__wraper">
+
+                                    <div class="event__price">
+                                        $32.00 <del>/ $67.00</del>
+                                    </div>
+                                    <div class="event__Price__button">
+                                        <a href="#">68% OFF</a>
+                                    </div>
+                                </div>
+
+                                <div class="course__summery__button">
+                                    <a class="default__button" href="#">Add To Cart</a>
+                                    <a class="default__button default__button--2" href="#">Buy Now</a>
+                                    <span>
+                                        <i class="icofont-ui-rotation"></i>
+                                        45-Days Money-Back Guarantee
+                                    </span>
+                                </div>
+
+                                <div class="course__summery__lists">
+                                    <ul>
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Instructor:</span><span class="sb_content"><a href="instructor-details.html">D. Willaim</a></span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Start Date</span><span class="sb_content">05 Dec 2024</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Total Duration</span><span class="sb_content">08Hrs 32Min</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Enrolled</span><span class="sb_content">100</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Lectures</span><span class="sb_content">30</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Skill Level</span><span class="sb_content">Basic</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Language</span><span class="sb_content">Spanish</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Quiz</span><span class="sb_content">Yes</span>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="course__summery__item">
+                                                <span class="sb_label">Certificate</span><span class="sb_content">Yes</span>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="course__summery__button">
+                                    <p>More inquery about course.</p>
+                                    <a class="default__button default__button--3" href="tel:+4733378901"><i class="icofont-phone"></i> +47 333 78 901</a>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                                <h4 class="sidebar__title">Follow Us</h4>
+                                <div class="follow__icon">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icofont-facebook"></i></a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#"><i class="icofont-youtube-play"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icofont-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icofont-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icofont-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+                                <h4 class="sidebar__title">Popular Projects</h4>
+                                <ul class="course__details__popular__list">
+                                    {% for course in courses %}
+                                    <li>
+                                        <div class="course__details__popular__img">
+                                            <img loading="lazy" src="{{ course.course_image.url }}" alt="popular" width="150px" height="100px">
+                                        </div>
+                                        <div class="course__details__popular__content">
+                                            <span>${{ course.discounted_price }}</span>
+                                            <h6><a href="{% url 'course_details' course.id %}">{{ course.title }}</a></h6>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                                <h4 class="sidebar__title">Get in Touch</h4>
+                                <div class="get__touch__input">
+                                    <input type="text" placeholder="Enter name*">
+                                    <input type="text" placeholder="Enter your mail*">
+                                    <input type="text" placeholder="Massage*">
+                                    <a class="default__button" href="blog-details.html">SEND MASSAGE</a>
+                                </div>
+
+                            </div>
+
+                            <div class="blogsidebar__content__wraper__2" data-aos="fade-up">
+
+                                <h4 class="sidebar__title">Popular tag</h4>
+                                <div class="populer__tag__list">
+                                    <ul>
+                                        <li><a href="blog-details.html">Business</a></li>
+                                        <li><a href="blog-details.html">Design</a></li>
+                                        <li><a href="blog-details.html">apps</a></li>
+                                        <li><a href="blog-details.html">landing page</a></li>
+                                        <li><a href="blog-details.html">data</a></li>
+                                        <li><a href="blog-details.html">book</a></li>
+                                        <li><a href="blog-details.html">Design</a></li>
+                                        <li><a href="blog-details.html">book</a></li>
+                                        <li><a href="blog-details.html">landing page</a></li>
+                                        <li><a href="blog-details.html">data</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>

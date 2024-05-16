@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% load static %}
+
+<body class="body__wrapper">
+  <main class="main_wrapper overflow-hidden">
+    {% block content %}
+    <div class="breadcrumbarea">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="breadcrumb__content__wraper" data-aos="fade-up">
+              <div class="breadcrumb__title">
+                <h2 class="heading">Successful Upload</h2>
+              </div>
+              <div class="breadcrumb__inner">
+                <ul>
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li>Completed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shape__icon__2">
+        <img
+          loading="lazy"
+          class="shape__icon__img shape__icon__img__1"
+          src="{% static '/img/herobanner/herobanner__1.png' %}"
+          alt="photo"
+        />
+        <img
+          loading="lazy"
+          class="shape__icon__img shape__icon__img__2"
+          src="{% static '/img/herobanner/herobanner__2.png' %}"
+          alt="photo"
+        />
+        <img
+          loading="lazy"
+          class="shape__icon__img shape__icon__img__3"
+          src="{% static '/img/herobanner/herobanner__3.png' %}"
+          alt="photo"
+        />
+        <img
+          loading="lazy"
+          class="shape__icon__img shape__icon__img__4"
+          src="{% static '/img/herobanner/herobanner__5.png' %}"
+          alt="photo"
+        />
+      </div>
+    </div>
+    <!-- breadcrumbarea__section__end-->
+
+    <!-- become__instructor__start -->
+    <div class="create__course sp_100">
+      <div class="container">
+        <div class="row">
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div class="become__instructor__form">
+                {% if user.is_authenticated %}
+                <h1 style="text-align: center; margin-top: 50px; color: #333">
+                  Questions upload completed {{user.username}}
+                </h1>
+                <div style="text-align: center;">
+                    <a href="{% url 'question_list' %}" style="display: inline-block; padding: 10px 20px; background-color: purple; color: white; text-decoration: none; border-radius: 5px;">Go to all WBT</a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </main>
+</body>

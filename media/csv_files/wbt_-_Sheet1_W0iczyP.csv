@@ -1,0 +1,6 @@
+question_text,option1,option2,option3,correct_option
+What is the capital of France?,Parris,London,Berlin,Fransco
+Who painted the Mona Lisa?,Leonardo da Vinci,Michelangelo,Raphael,Van Nero
+What is the chemical symbol for water?,H30,NACL,H340,H20
+What is the capital of Japan?,Tokyo,Beijing,Seoul,Japenese
+What is the main difference between a list and a tuple in Python?,Lists are mutable,Tuples are immutable,Lists have a fixed length,Lists and tuples are identical
