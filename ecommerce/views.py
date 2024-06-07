@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from courses.models import CartItem
 from django.contrib.auth.decorators import login_required
 
@@ -10,8 +10,18 @@ def product_details(request):
     
 @login_required(login_url='login')
 def cart(request):
-    cart_items = CartItem.objects.filter(user=request.user)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'clear':
+            CartItem.objects.filter(user=request.user).delete()
+    elif request.method == 'GET':
+        cart_item_id = request.GET.get('remove')
+        if cart_item_id:
+            cart_item = get_object_or_404(CartItem, id=cart_item_id, user=request.user)
+            cart_item.delete()
+            return redirect('cart')
 
+    cart_items = CartItem.objects.filter(user=request.user)
     context = {
         'cart_items': cart_items,
     }
