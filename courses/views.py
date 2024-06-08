@@ -39,6 +39,7 @@ def add_to_cart(request, course_id):
     return redirect('course_details', course_id=course_id)
 
 
+@login_required(login_url='login')
 def course_details(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     courses = Course.objects.order_by('-id')[:2]
@@ -52,6 +53,7 @@ def course_details(request, course_id):
         'cart_items': cart_items,
     }
     return render(request, 'course-details.html', context)
+
 
 
 def wbt(request):
