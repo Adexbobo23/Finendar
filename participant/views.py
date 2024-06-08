@@ -4,6 +4,7 @@ from .forms import UserProfileForm
 from .models import UserProfile
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from courses.models import EnrolledCourse
 
 
 @login_required(login_url='login')
@@ -40,7 +41,8 @@ def courses(request):
     except ObjectDoesNotExist:
         user_profile = None
 
-    return render(request, 'dashboard/student-enrolled-courses.html', {'user_profile': user_profile})
+    enrolled_courses = EnrolledCourse.objects.filter(user=request.user)
+    return render(request, 'dashboard/student-enrolled-courses.html', {'enrolled_courses': enrolled_courses, 'user_profile': user_profile})
 
 @login_required(login_url='login')
 def wishlist(request):
