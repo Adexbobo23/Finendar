@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.db import models
 
+
 class Course(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
+    # category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='courses', default=1)
     free_regular_price = models.DecimalField(max_digits=10, decimal_places=2)
     discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
     duration = models.CharField(max_length=255, default='2 hours')
@@ -18,7 +20,7 @@ class Course(models.Model):
     video_url = models.URLField()
     certificate_image = models.ImageField(upload_to='certificate_templates/', blank=True, null=True)
     course_image = models.ImageField(upload_to='course_images/', blank=True, null=True)
-    
+
     # Fields for course lessons
     lesson_1 = models.URLField(blank=True, null=True)
     lesson_2 = models.URLField(blank=True, null=True)
@@ -58,9 +60,9 @@ class Course(models.Model):
     course_material_4 = models.FileField(upload_to='course_materials/', blank=True, null=True)
     course_material_5 = models.FileField(upload_to='course_materials/', blank=True, null=True)
 
-
     def __str__(self):
         return self.title
+
 
 # Cart ITEM
 class CartItem(models.Model):
