@@ -32,12 +32,12 @@ def all_courses(request):
         courses = Course.objects.filter(
             Q(title__icontains=query) |
             Q(description__icontains=query) |
-            Q(course_tags__icontains(query))
+            Q(course_tags__icontains=query)  
         )
     else:
         courses = Course.objects.all()
     
-    paginator = Paginator(courses, 9)  
+    paginator = Paginator(courses, 9)
     try:
         courses_paginated = paginator.page(page)
     except PageNotAnInteger:
