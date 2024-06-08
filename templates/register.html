@@ -64,7 +64,7 @@
                                     <div class="loginarea__wraper">
                                         <div class="login__heading">
                                             <h5 class="login__title">Sign Up</h5>
-                                            <p class="login__description">Already have an account? <a href="{% url 'login' %}" data-bs-toggle="modal" data-bs-target="#registerModal">Log In</a></p>
+                                            <p class="login__description">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
                                         </div>
 
                                         <form method="post" action="{% url 'register' %}" class="row" id="register-form">
@@ -72,7 +72,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_first_name">First Name</label>
-                                                    <input class="common__login__input" type="text" name="first_name" id="id_first_name" placeholder="First Name" required>
+                                                    <input class="common__login__input" type="text" name="first_name" id="id_first_name" placeholder="Your first name" required>
                                                     {% if form.first_name.errors %}
                                                     <p class="error">{{ form.first_name.errors }}</p>
                                                     {% endif %}
@@ -81,7 +81,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_last_name">Last Name</label>
-                                                    <input class="common__login__input" type="text" name="last_name" id="id_last_name" placeholder="Last Name" required>
+                                                    <input class="common__login__input" type="text" name="last_name" id="id_last_name" placeholder="Your last name" required>
                                                     {% if form.last_name.errors %}
                                                     <p class="error">{{ form.last_name.errors }}</p>
                                                     {% endif %}
@@ -90,7 +90,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_username">Username</label>
-                                                    <input class="common__login__input" type="text" name="username" id="id_username" placeholder="Username" required>
+                                                    <input class="common__login__input" type="text" name="username" id="id_username" placeholder="Your username" required>
                                                     {% if form.username.errors %}
                                                     <p class="error">{{ form.username.errors }}</p>
                                                     {% endif %}
@@ -99,7 +99,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_email">Email</label>
-                                                    <input class="common__login__input" type="email" name="email" id="id_email" placeholder="Your Email" required>
+                                                    <input class="common__login__input" type="email" name="email" id="id_email" placeholder="Your email address" required>
                                                     {% if form.email.errors %}
                                                     <p class="error">{{ form.email.errors }}</p>
                                                     {% endif %}
@@ -108,7 +108,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_password1">Password</label>
-                                                    <input class="common__login__input" type="password" name="password1" id="id_password1" placeholder="Password" required>
+                                                    <input class="common__login__input" type="password" name="password1" id="id_password1" placeholder="Your password" required>
                                                     {% if form.password1.errors %}
                                                     <p class="error">{{ form.password1.errors }}</p>
                                                     {% endif %}
@@ -117,7 +117,7 @@
                                             <div class="col-xl-6">
                                                 <div class="login__form">
                                                     <label class="form__label" for="id_password2">Re-Enter Password</label>
-                                                    <input class="common__login__input" type="password" name="password2" id="id_password2" placeholder="Re-Enter Password" required>
+                                                    <input class="common__login__input" type="password" name="password2" id="id_password2" placeholder="Re-Enter your password" required>
                                                     {% if form.password2.errors %}
                                                     <p class="error">{{ form.password2.errors }}</p>
                                                     {% endif %}

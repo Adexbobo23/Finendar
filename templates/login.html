@@ -48,7 +48,7 @@
                         <div class="col-xl-8 col-md-8 offset-md-2" data-aos="fade-up">
                             <ul class="nav  tab__button__wrap text-center" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <a href="{% url 'login' %}"><button class="single__tab__link active"  data-bs-target="#projects__one" type="button">Login</button></a>
+                                    <a href="{% url 'login' %}"><button class="single__tab__link active"  data-bs-target="#projects__one" type="button">Sign in</button></a>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <a href="{% url 'register' %}"><button class="single__tab__link"data-bs-target="#projects__two" type="button">Sign up</button></a>
@@ -63,8 +63,8 @@
                                 <div class="col-xl-8 col-md-8 offset-md-2">
                                     <div class="loginarea__wraper">
                                         <div class="login__heading">
-                                            <h5 class="login__title">Login</h5>
-                                            <p class="login__description">Don't have an account yet? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up for free</a></p>
+                                            <h5 class="login__title">Sign in</h5>
+                                            <p class="login__description">Don't have an account yet? <a href="{% url 'register' %}" >Sign up for free</a></p>
                                         </div>
     
     
