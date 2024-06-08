@@ -801,7 +801,7 @@
                                 <div class="event__price__wraper">
 
                                     <div class="event__price">
-                                        $32.00 <del>/ $67.00</del>
+                                        ${{ course.discounted_price }} <del>/ ${{ course.free_regular_price }}</del>
                                     </div>
                                     <div class="event__Price__button">
                                         <a href="#">68% OFF</a>
@@ -936,7 +936,7 @@
                                     <input type="text" placeholder="Enter name*">
                                     <input type="text" placeholder="Enter your mail*">
                                     <input type="text" placeholder="Massage*">
-                                    <a class="default__button" href="blog-details.html">SEND MASSAGE</a>
+                                    <a class="default__button" href="#">SEND MASSAGE</a>
                                 </div>
 
                             </div>
@@ -946,16 +946,16 @@
                                 <h4 class="sidebar__title">Popular tag</h4>
                                 <div class="populer__tag__list">
                                     <ul>
-                                        <li><a href="blog-details.html">Business</a></li>
-                                        <li><a href="blog-details.html">Design</a></li>
-                                        <li><a href="blog-details.html">apps</a></li>
-                                        <li><a href="blog-details.html">landing page</a></li>
-                                        <li><a href="blog-details.html">data</a></li>
-                                        <li><a href="blog-details.html">book</a></li>
-                                        <li><a href="blog-details.html">Design</a></li>
-                                        <li><a href="blog-details.html">book</a></li>
-                                        <li><a href="blog-details.html">landing page</a></li>
-                                        <li><a href="blog-details.html">data</a></li>
+                                        <li><a href="{% url 'all_courses' %}">Business</a></li>
+                                        <li><a href="{% url 'all_courses' %}">Design</a></li>
+                                        <li><a href="{% url 'all_courses' %}">apps</a></li>
+                                        <li><a href="{% url 'all_courses' %}">landing page</a></li>
+                                        <li><a href="{% url 'all_courses' %}">data</a></li>
+                                        <li><a href="{% url 'all_courses' %}">book</a></li>
+                                        <li><a href="{% url 'all_courses' %}">Design</a></li>
+                                        <li><a href="{% url 'all_courses' %}">book</a></li>
+                                        <li><a href="{% url 'all_courses' %}">landing page</a></li>
+                                        <li><a href="{% url 'all_courses' %}">data</a></li>
                                     </ul>
                                 </div>
 

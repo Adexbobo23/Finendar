@@ -27,6 +27,18 @@ def cart(request):
     }
     return render(request, 'ecommerce/cart.html', context)
 
+# @login_required(login_url='login')
+# def base_view(request):
+#     cart_items = CartItem.objects.filter(user=request.user)
+#     total_price = sum(item.course.discounted_price * item.quantity for item in cart_items)
+
+#     context = {
+#         'cart_items': cart_items,
+#         'total_price': total_price,
+#     }
+#     return render(request, 'base.html', context)
+
+
 def checkout(request):
     return render(request, 'ecommerce/checkout.html')
 
