@@ -3,6 +3,7 @@ from .forms import CourseForm
 from .models import Course, CartItem
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @login_required(login_url='login')
@@ -25,15 +26,30 @@ def create_project(request):
 
 def all_courses(request):
     query = request.GET.get('q')
+    page = request.GET.get('page', 1)
+    
     if query:
         courses = Course.objects.filter(
             Q(title__icontains=query) |
             Q(description__icontains=query) |
-            Q(course_tags__icontains=query)
+            Q(course_tags__icontains(query))
         )
     else:
         courses = Course.objects.all()
-    return render(request, 'course.html', {'courses': courses, 'query': query})
+    
+    paginator = Paginator(courses, 9)  
+    try:
+        courses_paginated = paginator.page(page)
+    except PageNotAnInteger:
+        courses_paginated = paginator.page(1)
+    except EmptyPage:
+        courses_paginated = paginator.page(paginator.num_pages)
+    
+    return render(request, 'course.html', {
+        'courses': courses_paginated,
+        'query': query,
+        'paginator': paginator
+    })
 
 
 @login_required(login_url='login')

@@ -331,17 +331,33 @@
 
             <div class="main__pagination__wrapper" data-aos="fade-up">
               <ul class="main__page__pagination">
-                <li>
-                  <a class="disable" href="#"><i class="icofont-double-left"></i></a>
-                </li>
-                <li><a class="active" href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>
-                  <a href="#"><i class="icofont-double-right"></i></a>
-                </li>
+                  {% if courses.has_previous %}
+                  <li>
+                      <a href="?page=1{% if query %}&q={{ query }}{% endif %}"><i class="icofont-double-left"></i></a>
+                  </li>
+                  <li>
+                      <a href="?page={{ courses.previous_page_number }}{% if query %}&q={{ query }}{% endif %}"><i class="icofont-double-left"></i></a>
+                  </li>
+                  {% endif %}
+                  {% for num in courses.paginator.page_range %}
+                  {% if courses.number == num %}
+                  <li><a class="active" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a></li>
+                  {% elif num > courses.number|add:-3 and num < courses.number|add:3 %}
+                  <li><a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a></li>
+                  {% endif %}
+                  {% endfor %}
+                  {% if courses.has_next %}
+                  <li>
+                      <a href="?page={{ courses.next_page_number }}{% if query %}&q={{ query }}{% endif %}"><i class="icofont-double-right"></i></a>
+                  </li>
+                  <li>
+                      <a href="?page={{ courses.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}"><i class="icofont-double-right"></i></a>
+                  </li>
+                  {% endif %}
               </ul>
-            </div>
+          </div>
+      </div>
+  </div>
           </div>
         </div>
       </div>
