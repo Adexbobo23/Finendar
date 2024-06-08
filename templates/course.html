@@ -75,10 +75,14 @@
                 <h5>Search here</h5>
               </div>
               <div class="course__input">
-                <input type="text" placeholder="Search product" />
-                <div class="search__button">
-                  <button><i class="icofont-search-1"></i></button>
-                </div>
+                <form method="GET" action="">
+                  <div class="course__input">
+                      <input type="text" name="q" placeholder="Search course" value="{{ query|default_if_none:'' }}" />
+                      <div class="search__button">
+                          <button type="submit"><i class="icofont-search-1"></i></button>
+                      </div>
+                  </div>
+              </form>
               </div>
             </div>
             <div class="course__sidebar__wraper" data-aos="fade-up">

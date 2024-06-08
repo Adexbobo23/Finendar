@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm
 from .models import Course, CartItem
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 @login_required(login_url='login')
@@ -23,8 +24,16 @@ def create_project(request):
 
 
 def all_courses(request):
-    courses = Course.objects.all()
-    return render(request, 'course.html', {'courses': courses})
+    query = request.GET.get('q')
+    if query:
+        courses = Course.objects.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(course_tags__icontains=query)
+        )
+    else:
+        courses = Course.objects.all()
+    return render(request, 'course.html', {'courses': courses, 'query': query})
 
 
 @login_required(login_url='login')
