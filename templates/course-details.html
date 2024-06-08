@@ -439,12 +439,16 @@
                                         {% csrf_token %}
                                         <button type="submit" class="default__button">Add To Cart</button>
                                     </form>
-                                    <a class="default__button default__button--2" href="#">Buy Now</a>
+                                    <form action="{% url 'enroll_course' course.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="default__button default__button--2">Buy Now</button>
+                                    </form>
                                     <span>
                                         <i class="icofont-ui-rotation"></i>
                                         45-Days Money-Back Guarantee
                                     </span>
                                 </div>
+                                
                                 
                                 <div class="course__summery__lists">
                                     <ul>

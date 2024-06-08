@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm
-from .models import Course, CartItem
+from .models import Course, CartItem, EnrolledCourse
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 
 
 @login_required(login_url='login')
@@ -68,6 +69,21 @@ def add_to_cart(request, course_id):
 
 
 @login_required(login_url='login')
+def enroll_user(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    # Check if the user is already enrolled
+    if EnrolledCourse.objects.filter(user=request.user, course=course).exists():
+        messages.warning(request, 'You are already enrolled in this course.')
+    else:
+        # Enroll the user in the course
+        EnrolledCourse.objects.create(user=request.user, course=course)
+        messages.success(request, 'You have been successfully enrolled in the course.')
+    
+    # Redirect to the "my-course" page after enrollment
+    return redirect('my-course')
+
+
+@login_required(login_url='login')
 def course_details(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     courses = Course.objects.order_by('-id')[:2]
@@ -80,12 +96,19 @@ def course_details(request, course_id):
         'courses': courses,
         'cart_items': cart_items,
     }
+
+    if request.method == 'POST' and 'enroll_course' in request.POST:
+        return enroll_user(request, course_id)  
+
     return render(request, 'course-details.html', context)
 
 
+def course_lesson(request):
+    return render(request, 'lesson.html')
 
-def wbt(request):
-    return render(request, 'cbt.html')
+def course_lesson_2(request):
+    return render(request, 'lesson-2.html')
+
 
 # ==========================================WEB BASE TEST=============================================
 
@@ -95,6 +118,9 @@ from django.views import View
 from .models import Question, Answer, Response
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+
+def wbt(request):
+    return render(request, 'cbt.html')
 
 @login_required(login_url='login')
 def upload_questions(request):

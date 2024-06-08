@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Course, Question, Answer, Response, ExamScore, CartItem
+from .models import Course, Question, Answer, Response, ExamScore, CartItem, EnrolledCourse
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('title', 'start_date', 'language', 'user')
+
+@admin.register(EnrolledCourse)
+class EnrolledCourseAdmin(admin.ModelAdmin):
+    list_display = ('course', 'user', 'enrolled_date')
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
