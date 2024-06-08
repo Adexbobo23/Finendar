@@ -103,8 +103,21 @@ def course_details(request, course_id):
     return render(request, 'course-details.html', context)
 
 
-def course_lesson(request):
-    return render(request, 'lesson.html')
+@login_required(login_url='login')
+def course_lesson(request, course_id):
+    enrolled_course = get_object_or_404(EnrolledCourse, course_id=course_id, user=request.user)
+    course = enrolled_course.course
+    lessons = [
+        course.lesson_1, course.lesson_2, course.lesson_3, course.lesson_4, course.lesson_5,
+        course.lesson_6, course.lesson_7, course.lesson_8, course.lesson_9, course.lesson_10,
+        course.lesson_11, course.lesson_12, course.lesson_13, course.lesson_14, course.lesson_15,
+        course.lesson_16, course.lesson_17, course.lesson_18, course.lesson_19, course.lesson_20,
+        course.lesson_21, course.lesson_22, course.lesson_23, course.lesson_24, course.lesson_25,
+        course.lesson_26, course.lesson_27, course.lesson_28, course.lesson_29, course.lesson_30,
+    ]
+
+    return render(request, 'lesson.html', {'enrolled_course': enrolled_course, 'lessons': lessons})
+
 
 def course_lesson_2(request):
     return render(request, 'lesson-2.html')

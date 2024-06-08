@@ -11,7 +11,7 @@ from .views import (
 urlpatterns = [
     path('create-course/', create_project, name='create-project'),
     path('courses/', all_courses, name='all_courses'),
-    path('lesson/', course_lesson, name='lesson'),
+    path('course/<int:course_id>/lesson/', course_lesson, name='lesson'),
     path('lesson-2/', course_lesson_2, name='lesson_2'),
     path('course/<int:course_id>/', course_details, name='course_details'),
     path('wbt/', wbt, name='wbt'),

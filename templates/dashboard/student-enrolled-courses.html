@@ -151,7 +151,7 @@
                                                 <div class="col-xl-4 col-lg-6 col-md-6 col-12">
                                                     <div class="gridarea__wraper">
                                                         <div class="gridarea__img">
-                                                            <a href="{% url 'course_details' enrolled_course.course.id %}"><img loading="lazy" src="{{ enrolled_course.course.course_image.url }}" alt="grid"></a>
+                                                            <a href="{% url 'lesson' enrolled_course.course.id %}"><img loading="lazy" src="{{ enrolled_course.course.course_image.url }}" alt="grid"></a>
                                                             <div class="gridarea__small__button">
                                                                 <div class="grid__badge">{{ enrolled_course.course.title }}</div>
                                                             </div>
@@ -171,12 +171,12 @@
                                                                 </ul>
                                                             </div>
                                                             <div class="gridarea__heading">
-                                                                <h3><a href="{% url 'course_details' enrolled_course.course.id %}">{{ enrolled_course.course.title }}</a></h3>
+                                                                <h3><a href="{% url 'lesson' enrolled_course.course.id %}">{{ enrolled_course.course.title }}</a></h3>
                                                             </div>
-                                                            <div class="gridarea__price">
+                                                            <!-- <div class="gridarea__price">
                                                                 {{ enrolled_course.course.discounted_price }} <del>/ {{ enrolled_course.course.free_regular_price }}</del>
                                                                 <span> <del class="del__2">Free</del></span>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="gridarea__bottom">
                                                                 <a href="{% url 'instructor_details' enrolled_course.course.user.id %}">
                                                                     <div class="gridarea__small__img">
