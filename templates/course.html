@@ -199,75 +199,74 @@
                 <div class="row">
                   {% for course in courses %}
                   <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
-                    <div class="gridarea__wraper gridarea__wraper__2">
-                      <div class="gridarea__img">
-                        <a href="{% url 'course_details' course.id %}"><img loading="lazy"
-                            src="{{ course.course_image.url }}" alt="{{ course.title }}" /></a>
-                        <div class="gridarea__small__button">
-                          <div class="grid__badge">
-                            {{ course.course_tags }}
-                          </div>
-                        </div>
-                        <div class="gridarea__small__icon">
-                          <a href="#"><i class="icofont-heart-alt"></i></a>
-                        </div>
-                      </div>
-                      <div class="gridarea__content">
-                        <div class="gridarea__list">
-                          <ul>
-                            <li>
-                              <i class="icofont-book-alt"></i>
-                              {{ course.lesson_set }}
-                            </li>
-                            <!-- Assuming you have a duration field in your model -->
-                            <li>
-                              <i class="icofont-clock-time"></i> {{ course.duration }}
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="gridarea__heading">
-                          <h3>
-                            <a href="{% url 'course_details' course.id %}">{{ course.title }}</a>
-                          </h3>
-                        </div>
-                        <div class="gridarea__price">
-                          ${{ course.discounted_price }}
-                          <del>/ ${{ course.free_regular_price }}</del>
-                          <span> <del class="del__2">Free</del></span>
-                        </div>
-                        <div class="gridarea__bottom">
-                          {% if course.user.id %}
-                          <a href="{% url 'instructor_details' course.user.instructor.id %}">
-                            <div class="gridarea__small__img">
-                              <img loading="lazy" src="{{ course.user.profile_image.url }}"
-                                alt="{{ course.user.profile.name }}" />
-                              <div class="gridarea__small__content">
-                                <h6>Instructor: {{ course.user.get_full_name }}</h6>
+                      <div class="gridarea__wraper gridarea__wraper__2">
+                          <div class="gridarea__img">
+                              <a href="{% url 'course_details' course.id %}"><img loading="lazy" src="{{ course.course_image.url }}" alt="{{ course.title }}" /></a>
+                              <div class="gridarea__small__button">
+                                  <div class="grid__badge">
+                                      {{ course.course_tags }}
+                                  </div>
                               </div>
-                            </div>
-                          </a>
-                          {% else %}
-                          <div class="gridarea__small__img">
-                            <img loading="lazy" src="{% static 'path_to_placeholder_image.png' %}" alt="Placeholder" />
-                            <div class="gridarea__small__content">
-                              <h6>No instructor assigned</h6>
-                            </div>
+                              <div class="gridarea__small__icon">
+                                  {% if course.id in user_wishlist %}
+                                  <a href="#"><i class="icofont-heart" style="color: red;"></i></a>
+                                  {% else %}
+                                  <a href="{% url 'add_to_wishlist' course.id %}"><i class="icofont-heart-alt"></i></a>
+                                  {% endif %}
+                              </div>
                           </div>
-                          {% endif %}
-
-                          <div class="gridarea__star">
-                            <!-- Assuming you have a rating field in your model -->
-                            {% for star in course.rating.stars %}
-                            <i class="icofont-star"></i>
-                            {% endfor %}
-                            <!-- <span>({{ course.rating.count }})</span> -->
+                          <div class="gridarea__content">
+                              <div class="gridarea__list">
+                                  <ul>
+                                      <li>
+                                          <i class="icofont-book-alt"></i>
+                                          {{ course.lesson_set }}
+                                      </li>
+                                      <li>
+                                          <i class="icofont-clock-time"></i> {{ course.duration }}
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="gridarea__heading">
+                                  <h3>
+                                      <a href="{% url 'course_details' course.id %}">{{ course.title }}</a>
+                                  </h3>
+                              </div>
+                              <div class="gridarea__price">
+                                  ${{ course.discounted_price }}
+                                  <del>/ ${{ course.free_regular_price }}</del>
+                                  <span> <del class="del__2">Free</del></span>
+                              </div>
+                              <div class="gridarea__bottom">
+                                  {% if course.user.id %}
+                                  <a href="{% url 'instructor_details' course.user.instructor.id %}">
+                                      <div class="gridarea__small__img">
+                                          <img loading="lazy" src="{{ course.user.profile_image.url }}" alt="{{ course.user.profile.name }}" />
+                                          <div class="gridarea__small__content">
+                                              <h6>Instructor: {{ course.user.get_full_name }}</h6>
+                                          </div>
+                                      </div>
+                                  </a>
+                                  {% else %}
+                                  <div class="gridarea__small__img">
+                                      <img loading="lazy" src="{% static 'path_to_placeholder_image.png' %}" alt="Placeholder" />
+                                      <div class="gridarea__small__content">
+                                          <h6>No instructor assigned</h6>
+                                      </div>
+                                  </div>
+                                  {% endif %}
+                                  <div class="gridarea__star">
+                                      {% for star in course.rating.stars %}
+                                      <i class="icofont-star"></i>
+                                      {% endfor %}
+                                  </div>
+                              </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
                   </div>
                   {% endfor %}
-                </div>
+              </div>
+              
               </div>
 
               <div class="tab-pane fade" id="projects__two" role="tabpanel" aria-labelledby="projects__two">

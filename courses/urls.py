@@ -5,7 +5,8 @@ from .views import (
     upload_questions, 
     exam_result, question_upload,
     question_list, take_exam,add_to_cart,
-    course_lesson, course_lesson_2, enroll_user
+    course_lesson, course_lesson_2, enroll_user,
+    toggle_wishlist, add_to_wishlist
     )
 
 urlpatterns = [
@@ -22,4 +23,6 @@ urlpatterns = [
     path('questions/', question_list, name='question_list'),
     path('add_to_cart/<int:course_id>/', add_to_cart, name='add_to_cart'),
     path('enroll/<int:course_id>/', enroll_user, name='enroll_course'),
+    path('wishlist/toggle/<int:course_id>/', toggle_wishlist, name='toggle_wishlist'),
+    path('add_to_wishlist/<int:course_id>/', add_to_wishlist, name='add_to_wishlist'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CourseForm
-from .models import Course, CartItem, EnrolledCourse
+from .models import Course, CartItem, EnrolledCourse, Wishlist
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -24,7 +24,20 @@ def create_project(request):
     return render(request, 'dashboard/create-course.html', {'form': form})
 
 
+@login_required(login_url='login')
+def add_to_wishlist(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user, course=course)
+    
+    if created:
+        messages.success(request, f'Course "{course.title}" has been added to your wishlist.')
+    else:
+        messages.info(request, f'Course "{course.title}" is already in your wishlist.')
+    
+    return redirect('all_courses')
 
+
+@login_required(login_url='login')
 def all_courses(request):
     query = request.GET.get('q')
     page = request.GET.get('page', 1)
@@ -32,8 +45,8 @@ def all_courses(request):
     if query:
         courses = Course.objects.filter(
             Q(title__icontains=query) |
-            Q(description__icontains=query) |
-            Q(course_tags__icontains=query)  
+            Q(description__icontains(query)) |
+            Q(course_tags__icontains(query))  
         )
     else:
         courses = Course.objects.all()
@@ -46,11 +59,25 @@ def all_courses(request):
     except EmptyPage:
         courses_paginated = paginator.page(paginator.num_pages)
     
+    user_wishlist = Wishlist.objects.filter(user=request.user).values_list('course_id', flat=True)
+    
     return render(request, 'course.html', {
         'courses': courses_paginated,
         'query': query,
-        'paginator': paginator
+        'paginator': paginator,
+        'user_wishlist': user_wishlist
     })
+
+
+@login_required(login_url='login')
+def toggle_wishlist(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, course=course)
+
+    if not created:
+        wishlist_item.delete()
+
+    return redirect('course_details', course_id=course_id)
 
 
 @login_required(login_url='login')
