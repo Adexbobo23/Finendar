@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<body class="body__wrapper">
+ 
+
+    <main class="main_wrapper overflow-hidden">
+        {% block content %}
+        <div class="breadcrumbarea">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="breadcrumb__content__wraper" data-aos="fade-up">
+                            <div class="breadcrumb__title">
+                                <h2 class="heading">Add Products</h2>
+                            </div>
+                            <div class="breadcrumb__inner">
+                                <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li>Add Products</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="shape__icon__2">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__1" src="{% static '/img/herobanner/herobanner__1.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__2" src="{% static '/img/herobanner/herobanner__2.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__3" src="{% static '/img/herobanner/herobanner__3.png' %}" alt="photo">
+                <img loading="lazy"  class=" shape__icon__img shape__icon__img__4" src="{% static '/img/herobanner/herobanner__5.png' %}" alt="photo">
+            </div>
+
+        </div>
+        <!-- breadcrumbarea__section__end-->
+
+
+        <!-- become__instructor__start -->
+        <div class="create__course sp_100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                        <div class="create__course__accordion__wraper">
+                            <div class="accordion" id="accordionExample">
+        
+                               <!-- Course Info -->
+                               <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Product Info
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="become__instructor__form">
+                                            <form method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {{ form.non_field_errors }}
+                                                {% for field in product_form %}
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                                    <div class="dashboard__form__wraper">
+                                                        <div class="dashboard__form__input">
+                                                            <label for="{{ field.id_for_label }}">
+                                                                {{ field.label }}
+                                                            </label>
+                                                            {{ field }}
+                                                            {% if field.help_text %}
+                                                            <small class="create__product__small">
+                                                                {{ field.help_text }}
+                                                            </small>
+                                                            {% endif %}
+                                                            {% for error in field.errors %}
+                                                            <div class="invalid-feedback">
+                                                                {{ error }}
+                                                            </div>
+                                                            {% endfor %}
+                                                            {% if field.errors %}
+                                                            <div class="invalid-feedback">
+                                                                {% for error in field.errors %}
+                                                                {{ field.label }}: {{ error }}
+                                                                {% endfor %}
+                                                            </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                                    <div class="dashboard__form__button create__product__margin">
+                                                        <button type="submit" class="default__button">Upload Product</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Side Content -->
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-12">
+                        <div class="create__course__wraper">
+                            <div class="create__product__title">
+                                <h4>Product Upload Tips</h4>
+                            </div>
+                            <div class="create__product__list">
+                                <ul>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Set the product price and offer discounts if applicable.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Use high-quality images for product thumbnails and additional images.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Add a video overview to showcase your product in detail.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Choose the correct category for better product visibility.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Ensure the product description is detailed and informative.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Set the stock quantity to manage inventory effectively.
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-check">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        Regularly update product information to keep it relevant.
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        {% endblock %}
+    </main>

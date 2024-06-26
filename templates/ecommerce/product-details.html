@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 <body class="body__wrapper">
 
     <main class="main_wrapper">
@@ -50,83 +51,85 @@
     <div class="">
         <div class="container">
             <div class="row">
-          
                 <div class="col-xl-6 col-lg-6 col-md-6">
-
-                        <div class="featurearea__details__img">
-                            <div class="swiper details__gallery__big">
-                                <div class="featurearea__big__img swiper-wrapper">
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/1.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/2.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/3.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/4.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/5.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/6.jpg' %}" alt="Product Big Img">
-                                    </div>
-                                    <div class="featurearea__single__big__img swiper-slide">
-                                        <img loading="lazy"  src="{% static '/img/products/7.jpg' %}" alt="Product Big Img">
-                                    </div>
+                    <div class="featurearea__details__img">
+                        <div class="swiper details__gallery__big">
+                            <div class="featurearea__big__img swiper-wrapper">
+                                <div class="featurearea__single__big__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.main_image.url }}" alt="{{ product.title }}">
                                 </div>
+                                {% if product.image1 %}
+                                <div class="featurearea__single__big__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image1.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image2 %}
+                                <div class="featurearea__single__big__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image2.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image3 %}
+                                <div class="featurearea__single__big__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image3.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image4 %}
+                                <div class="featurearea__single__big__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image4.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
                             </div>
-
-                            <div thumbsSlider="" class="swiper details__gallery">
-                            <div class=" featurearea__thumb__img swiper-wrapper">
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/1.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/2.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/2.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/4.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/5.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/6.jpg' %}" alt="Product Big Img">
-                                </div>
-                                <div class="featurearea__single__thumb__img swiper-slide">
-                                    <img loading="lazy"  src="{% static '/img/products/7.jpg' %}" alt="Product Big Img">
-                                </div>
-                            </div>
-                            </div>
-
                         </div>
 
-
+                        <div thumbsSlider="" class="swiper details__gallery">
+                            <div class="featurearea__thumb__img swiper-wrapper">
+                                <div class="featurearea__single__thumb__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.main_image.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% if product.image1 %}
+                                <div class="featurearea__single__thumb__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image1.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image2 %}
+                                <div class="featurearea__single__thumb__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image2.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image3 %}
+                                <div class="featurearea__single__thumb__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image3.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                                {% if product.image4 %}
+                                <div class="featurearea__single__thumb__img swiper-slide">
+                                    <img loading="lazy" src="{{ product.image4.url }}" alt="{{ product.title }}">
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="featurearea__inner">
                         <div class="featurearea__small__title">
-                            <span>Book</span>
+                            <span>{{ product.category.name }}</span>
                         </div>
                         <div class="featurearea__main__title">
-                            <h3>Book Lorem ipsum dolor.</h3>
+                            <h3>{{ product.title }}</h3>
                         </div>
                         <div class="featurearea__price">
-                            <span><del> $110.00</del></span>
-                            <span>$80.00</span>
+                            <span><del> ${{ product.price }}</del></span>
+                            <span>${{ product.discounted_price }}</span>
                             <span class="featurearea__price__button">SALE </span>
-                              <span class="featurearea__price__button black__color">-27%</span>
+                            
                         </div>
                         <div class="featurearea__countdown__title">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock timer__icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock timer__icon">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
                             <h5>Hurry up! Sale ends in</h5>
                         </div>
                         <div class="featurearea__countdown" data-countdown="2025/06/01">
@@ -136,24 +139,23 @@
                             <div class="count"><p>00</p><span>Sec</span></div>
                         </div>
                         <div class="featurearea__progress__text">
-                            <h6>Only 10 items in stock!</h6>
+                            <h6>Only {{ product.stock }} items in stock!</h6>
                             <div class="progress">
-                                <div role="progressbar" class="progress-bar wow fadeInLeft" data-wow-duration="0.6s" data-wow-delay=".4s" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%; visibility: visible; animation-duration: 0.6s; animation-delay: 0.4s; animation-name: fadeInLeft;"></div>
+                                <div role="progressbar" class="progress-bar wow fadeInLeft" data-wow-duration="0.6s" data-wow-delay=".4s" aria-valuenow="{{ product.stock_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.stock_percentage }}%; visibility: visible; animation-duration: 0.6s; animation-delay: 0.4s; animation-name: fadeInLeft;"></div>
                             </div>
                         </div>
-
 
                         <div class="featurearea__size">
                             <span>Size:</span>
                             X
                         </div>
                         <div class="featurearea__size__button">
-                          <ul>
-                            <li><a href="#">x</a></li>
-                            <li><a href="#">xl</a></li>
-                            <li><a href="#">m</a></li>
-                            <li><a href="#">s</a></li>
-                          </ul>
+                            <ul>
+                                <li><a href="#">x</a></li>
+                                <li><a href="#">xl</a></li>
+                                <li><a href="#">m</a></li>
+                                <li><a href="#">s</a></li>
+                            </ul>
                         </div>
 
                         <div class="featurearea__size">
@@ -161,38 +163,33 @@
                             violet
                         </div>
                         <div class="featurearea__size__img">
-                          <ul>
-                            <li><a href="#"><img loading="lazy"  src="{% static '/img/products/1.jpg' %}" alt=""></a></li>
-                            <li><a href="#"><img loading="lazy"  src="{% static '/img/products/2.jpg' %}" alt=""></a></li>
-                            <li><a href="#"><img loading="lazy"  src="{% static '/img/products/3.jpg' %}" alt=""></a></li>
-                            <li><a href="#"><img loading="lazy"  src="{% static '/img/products/4.jpg' %}" alt=""></a></li>
-                            <li><a href="#"><img loading="lazy"  src="{% static '/img/products/5.jpg' %}" alt=""></a></li>
-                          </ul>
+                            <ul>
+                                <li><a href="#"><img loading="lazy" src="{{ product.image1.url }}" alt=""></a></li>
+                                <li><a href="#"><img loading="lazy" src="{{ product.image2.url }}" alt=""></a></li>
+                                <li><a href="#"><img loading="lazy" src="{{ product.image3.url }}" alt=""></a></li>
+                                <li><a href="#"><img loading="lazy" src="{{ product.image4.url }}" alt=""></a></li>
+                                <li><a href="#"><img loading="lazy" src="{{ product.main_image.url }}" alt=""></a></li>
+                            </ul>
                         </div>
                         <div class="featurearea__size">
                             <span>Quantity</span>
-                          
                         </div>
                         <div class="featurearea__quantity">
+                            <div class="featurearea__quantity__button cartarea__plus__minus">
+                                <div class="dec qtybutton">- </div>
+                                <input class="cartarea__plus__minus__box" type="text" value="1" name="updates[]">
+                                <div class="inc qtybutton">+</div>
+                            </div>
 
-                                <div class="featurearea__quantity__button cartarea__plus__minus">                                
-                                        <div class="dec qtybutton">- </div>
-                                        <input class="cartarea__plus__minus__box" type="text" value="1" name="updates[]">
-                                        <div class="inc qtybutton">+</div>
-                                </div> 
-
-                              <a class="featurearea__quantity__button" href="#">Add to cart</a>
-                         
-                         
-                          
+                            <a class="featurearea__quantity__button" href="#">Add to cart</a>
                         </div>
                         <div class="featurearea__bottom__button">
-                            <a href="#">By it now</a>
-                          </div>
+                            <a href="#">Buy it now</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
 
