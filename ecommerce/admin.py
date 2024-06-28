@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, ProductWishlist
+from .models import Product, Category, ProductWishlist, ProductCartItem, ProductPurchase
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -14,3 +14,11 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(ProductWishlist)
 class ProductWishlistAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'added_at']
+
+@admin.register(ProductCartItem)
+class ProductCartItemAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'quantity', 'added_at']
+
+@admin.register(ProductPurchase)
+class ProductPurchaseAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'purchase_date']
