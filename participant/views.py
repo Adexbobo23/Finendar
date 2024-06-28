@@ -2,9 +2,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from .forms import UserProfileForm
 from .models import UserProfile
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from courses.models import EnrolledCourse, Wishlist
+from ecommerce.models import ProductWishlist
 
 
 @login_required(login_url='login')
@@ -58,6 +59,33 @@ def wishlist(request):
         'user_profile': user_profile,
         'wishlist_items': wishlist_items
     })
+
+
+@login_required(login_url='login')
+def product_wishlist(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        user_profile = None
+
+    wishlist_items = ProductWishlist.objects.filter(user=request.user)
+
+    return render(request, 'dashboard/student-product-wishlist.html', {
+        'user_profile': user_profile,
+        'wishlist_items': wishlist_items
+    })
+
+@login_required(login_url='login')
+def remove_from_wishlist(request, product_id):
+    wishlist_item = get_object_or_404(ProductWishlist, user=request.user, product_id=product_id)
+    wishlist_item.delete()
+    return redirect('my-product-wishlist')
+
+@login_required(login_url='login')
+def remove_from_course_wishlist(request, course_id):
+    wishlist_item = get_object_or_404(Wishlist, user=request.user, course_id=course_id)
+    wishlist_item.delete()
+    return redirect('my-wishlist')
 
 @login_required(login_url='login')
 def reviews(request):

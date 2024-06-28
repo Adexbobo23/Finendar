@@ -130,70 +130,70 @@
                                     <h4>Wishlist</h4>
                                 </div>
                                 <div class="row">
-                                    {% for item in wishlist_items %}
-                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="gridarea__wraper">
-                                            <div class="gridarea__img">
-                                                <img loading="lazy" src="{{ item.course.course_image.url }}" alt="grid">
-                                                <div class="gridarea__small__button">
-                                                    <div class="grid__badge blue__color">{{ item.course.course_tags }}</div>
-                                                </div>
-                                                <div class="gridarea__small__icon">
-                                                    <form action="{% url 'remove_from_course_wishlist' item.course.id %}" method="post" style="display: inline;">
-                                                        {% csrf_token %}
-                                                        <button type="submit" style="border: none; background: none;">
-                                                            <i class="icofont-heart" style="color: red;"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="gridarea__content">
-                                                <div class="gridarea__list">
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont-book-alt"></i> {{ item.course.lesson_set.count }} Lesson
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont-clock-time"></i> {{ item.course.duration }}
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="gridarea__heading">
-                                                    <h3><a href="{% url 'course_details' item.course.id %}">{{ item.course.title }}</a></h3>
-                                                </div>
-                                                <div class="gridarea__price green__color">
-                                                    ${{ item.course.discounted_price }}<del>/${{ item.course.free_regular_price }}</del>
-                                                    <span>.Free</span>
-                                                </div>
-                                                <div class="gridarea__bottom">
-                                                    {% if item.course.user.id %}
-                                                    <a href="{% url 'instructor_details' item.course.user.instructor.id %}">
-                                                        <div class="gridarea__small__img">
-                                                            <!-- <img loading="lazy" src="{{ item.course.user.profile_image.url }}" alt="grid"> -->
-                                                            <div class="gridarea__small__content">
-                                                                <h6>instructor {{ item.course.user.get_full_name }}</h6>
+                                    {% if wishlist_items %}
+                                        {% for item in wishlist_items %}
+                                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="gridarea__wraper">
+                                                    <div class="gridarea__img">
+                                                        <a href="{% url 'product_detail' item.product.slug %}">
+                                                            <img loading="lazy" src="{{ item.product.main_image.url }}" alt="{{ item.product.title }}">
+                                                        </a>
+                                                        <div class="gridarea__small__button gridarea__small__button__1">
+                                                            {% if item.product.discounted_price %}
+                                                            <div class="grid__badge">Sale</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="gridarea__small__icon">
+                                                            <form action="{% url 'remove_from_wishlist' item.product.id %}" method="post" style="display: inline;">
+                                                                {% csrf_token %}
+                                                                <button type="submit" style="border: none; background: none;">
+                                                                    <i class="icofont-heart" style="color: red;"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="product__grid__action">
+                                                            <ul>
+                                                                <li>
+                                                                    <a class="grid__cart" href="{% url 'add_product_to_cart_second' item.product.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" tabindex="0" data-bs-original-title="Add to cart">
+                                                                        Add to cart
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="gridarea__content">
+                                                        <div class="gridarea__heading">
+                                                            <h3><a href="{% url 'product_detail' item.product.slug %}">{{ item.product.title }}</a></h3>
+                                                        </div>
+                                                        <div class="gridarea__price">
+                                                            ${{ item.product.discounted_price|default:item.product.price }}
+                                                            {% if item.product.discounted_price %}
+                                                            <del>/ ${{ item.product.price }}</del>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="gridarea__bottom">
+                                                            <a href="{% url 'category_details' item.product.category.slug %}">{{ item.product.category.name }}</a>
+                                                            <div class="gridarea__star">
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <span>(44)</span>
                                                             </div>
                                                         </div>
-                                                    </a>
-                                                    {% else %}
-                                                    <div class="gridarea__small__img">
-                                                        <!-- <img loading="lazy" src="{% static 'path_to_placeholder_image.png' %}" alt="Placeholder"> -->
-                                                        <div class="gridarea__small__content">
-                                                            <h6>No instructor assigned</h6>
-                                                        </div>
-                                                    </div>
-                                                    {% endif %}
-                                                    <div class="gridarea__star">
-                                                        {% for star in item.course.rating.stars %}
-                                                        <i class="icofont-star"></i>
-                                                        {% endfor %}
-                                                        <span>{{ item.course.rating.count }}</span>
                                                     </div>
                                                 </div>
                                             </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="col-12">
+                                            <div class="no-products-found">
+                                                <p>No products found in your wishlist.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {% endfor %}
+                                    {% endif %}
+
                                 </div>
                                 
                             </div>
