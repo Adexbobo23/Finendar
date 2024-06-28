@@ -185,5 +185,41 @@ def add_product(request):
 @login_required(login_url='login')
 def category_details(request, slug):
     category = get_object_or_404(Category, slug=slug)
+    query = request.GET.get('q')
+    product_id = request.GET.get('product_id')
+    
     products = Product.objects.filter(category=category)
-    return render(request, 'ecommerce/category_details.html', {'category': category, 'products': products})
+    
+    if query:
+        products = products.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+    
+    paginator = Paginator(products, 9)
+    page = request.GET.get('page')
+    
+    try:
+        products_paginated = paginator.page(page)
+    except PageNotAnInteger:
+        products_paginated = paginator.page(1)
+    except EmptyPage:
+        products_paginated = paginator.page(paginator.num_pages)
+    
+    user_wishlist = []
+    if request.user.is_authenticated:
+        user_wishlist = ProductWishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+    
+    context = {
+        'category': category,
+        'products': products_paginated,
+        'query': query,
+        'paginator': paginator,
+        'user_wishlist': user_wishlist,
+    }
+    
+    if product_id:
+        context['selected_product'] = get_object_or_404(Product, id=product_id)
+    
+    return render(request, 'ecommerce/category_details.html', context)
