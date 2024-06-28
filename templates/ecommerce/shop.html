@@ -514,74 +514,77 @@
                             <div class="tab-pane fade active show" id="list_view">
                                 <div class="row">
                                     {% if products %}
-                                        {% for product in products %}
-                                            <!-- single product start this works -->
-                                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-6 col-12 column__custom__class">
-                                                <div class="gridarea__wraper product__grid">
-                                                    <div class="gridarea__img">
-                                                        <a href="{% url 'product_detail' product.slug %}">
-                                                            <img loading="lazy" src="{{ product.main_image.url }}" alt="{{ product.title }}">
-                                                        </a>
-                                                        <div class="gridarea__small__button gridarea__small__button__1">
-                                                            {% if product.discounted_price %}
-                                                            <div class="grid__badge">Sale</div>
-                                                            {% endif %}
-                                                        </div>
-                                                        <div class="gridarea__small__icon">
-                                                            <form action="{% url 'add_to_wishlist' product.id %}" method="post" style="display: inline;">
-                                                                {% csrf_token %}
-                                                                <button type="submit" style="border: none; background: none;">
-                                                                    {% if product.id in user_wishlist %}
-                                                                        <i class="icofont-heart" style="color: red;"></i>
-                                                                    {% else %}
-                                                                        <i class="icofont-heart-alt"></i>
-                                                                    {% endif %}
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="product__grid__action">
-                                                            <ul>
-                                                                <li>
-                                                                    <a class="grid__cart" href="{% url 'add_product_to_cart_second' product.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" tabindex="0" data-bs-original-title="Add to cart">
-                                                                        Add to cart
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                    {% for product in products %}
+                                        <!-- single product start -->
+                                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 col-12" data-aos="fade-up">
+                                            <div class="gridarea__wraper gridarea__wraper__2">
+                                                <div class="gridarea__img">
+                                                    <a href="{% url 'product_detail' product.slug %}">
+                                                        <img loading="lazy" src="{{ product.main_image.url }}" alt="{{ product.title }}">
+                                                    </a>
+                                                    <div class="gridarea__small__button gridarea__small__button__1">
+                                                        {% if product.discounted_price %}
+                                                        <div class="grid__badge">Sale</div>
+                                                        {% endif %}
                                                     </div>
-                                                    <div class="gridarea__content">
-                                                        <div class="gridarea__heading">
-                                                            <h3><a href="{% url 'product_detail' product.slug %}">{{ product.title }}</a></h3>
-                                                        </div>
-                                                        <div class="gridarea__price">
-                                                            ${{ product.discounted_price|default:product.price }}
-                                                            {% if product.discounted_price %}
-                                                            <del>/ ${{ product.price }}</del>
-                                                            {% endif %}
-                                                        </div>
-                                                        <div class="gridarea__bottom">
-                                                            <a href="{% url 'category_details' product.category.slug %}">{{ product.category.name }}</a>
-                                                            <div class="gridarea__star">
-                                                                <i class="icofont-star"></i>
-                                                                <i class="icofont-star"></i>
-                                                                <i class="icofont-star"></i>
-                                                                <i class="icofont-star"></i>
-                                                                <i class="icofont-star"></i>
-                                                                <span>(44)</span>
-                                                            </div>
+                                                    <div class="gridarea__small__icon">
+                                                        <form action="{% url 'add_to_wishlist' product.id %}" method="post" style="display: inline;">
+                                                            {% csrf_token %}
+                                                            <button type="submit" style="border: none; background: none;">
+                                                                {% if product.id in user_wishlist %}
+                                                                    <i class="icofont-heart" style="color: red;"></i>
+                                                                {% else %}
+                                                                    <i class="icofont-heart-alt"></i>
+                                                                {% endif %}
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="product__grid__action">
+                                                        <ul>
+                                                            <li>
+                                                                <a class="grid__cart" href="{% url 'add_product_to_cart_second' product.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" tabindex="0" data-bs-original-title="Add to cart">
+                                                                    Add to cart
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="gridarea__content">
+                                                    <div class="gridarea__heading">
+                                                        <h3>
+                                                            <a href="{% url 'product_detail' product.slug %}">{{ product.title }}</a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="gridarea__price">
+                                                        ${{ product.discounted_price|default:product.price }}
+                                                        {% if product.discounted_price %}
+                                                        <del>/ ${{ product.price }}</del>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="gridarea__bottom">
+                                                        <a href="{% url 'category_details' product.category.slug %}">{{ product.category.name }}</a>
+                                                        <div class="gridarea__star">
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <i class="icofont-star"></i>
+                                                            <span>(44)</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- single product end -->
-                                        {% endfor %}
-                                    {% else %}
-                                        <div class="col-12">
-                                            <div class="no-products-found">
-                                                <p>No products found.</p>
-                                            </div>
                                         </div>
-                                    {% endif %}
+                                        <!-- single product end -->
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="col-12">
+                                        <div class="no-products-found">
+                                            <p>No products found.</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
                                 </div>
                             </div>
 
