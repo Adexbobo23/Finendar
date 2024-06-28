@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Product, Category, ProductWishlist, ProductCartItem, ProductPurchase
+from .models import ( 
+    Product, Category, 
+    ProductWishlist, ProductCartItem, 
+    ProductPurchase, Tag
+)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -22,3 +26,7 @@ class ProductCartItemAdmin(admin.ModelAdmin):
 @admin.register(ProductPurchase)
 class ProductPurchaseAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'purchase_date']
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']

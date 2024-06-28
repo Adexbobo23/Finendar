@@ -163,7 +163,7 @@
                                         <option value="created-ascending">Date, old to new</option>
                                     </select>
                                 </div>
-                                <p>Showing 1 - 12 of 33 result </p>
+                                <p>Showing {{ start_index }} - {{ end_index }} of {{ total_products }} results</p>
                             </div>
 
 
@@ -513,116 +513,75 @@
 
                             <div class="tab-pane fade active show" id="list_view">
                                 <div class="row">
-                                    {% for product in products %}
-                                    <!-- single product start this works -->
-                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-6 col-12 column__custom__class">
-                                        <div class="gridarea__wraper product__grid">
-                                            <div class="gridarea__img">
-                                                <a href="{% url 'product_detail' product.slug %}">
-                                                    <img loading="lazy" src="{{ product.main_image.url }}"
-                                                        alt="{{ product.title }}">
-                                                </a>
-                                                <div class="gridarea__small__button gridarea__small__button__1">
-                                                    {% if product.discounted_price %}
-                                                    <div class="grid__badge">Sale</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="gridarea__small__icon">
-                                                    <form action="{% url 'add_to_wishlist' product.id %}" method="post" style="display: inline;">
-                                                        {% csrf_token %}
-                                                        <button type="submit" style="border: none; background: none;">
-                                                            {% if product.id in user_wishlist %}
-                                                                <i class="icofont-heart" style="color: red;"></i>
-                                                            {% else %}
-                                                                <i class="icofont-heart-alt"></i>
+                                    {% if products %}
+                                        {% for product in products %}
+                                            <!-- single product start this works -->
+                                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-6 col-12 column__custom__class">
+                                                <div class="gridarea__wraper product__grid">
+                                                    <div class="gridarea__img">
+                                                        <a href="{% url 'product_detail' product.slug %}">
+                                                            <img loading="lazy" src="{{ product.main_image.url }}" alt="{{ product.title }}">
+                                                        </a>
+                                                        <div class="gridarea__small__button gridarea__small__button__1">
+                                                            {% if product.discounted_price %}
+                                                            <div class="grid__badge">Sale</div>
                                                             {% endif %}
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                
-                                                <div class="product__grid__action">
-                                                    <ul>
-                                                        <!-- <li>
-                                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="" tabindex="0"
-                                                                data-bs-original-title="Add To Compare">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon"
-                                                                    viewBox="0 0 512 512">
-                                                                    <path fill="none" stroke="currentColor"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="32"
-                                                                        d="M304 160l-64-64 64-64M207 352l64 64-64 64" />
-                                                                    <circle cx="112" cy="96" r="48" fill="none"
-                                                                        stroke="currentColor" stroke-linecap="round"
-                                                                        stroke-linejoin="round" stroke-width="32" />
-                                                                    <circle cx="400" cy="416" r="48" fill="none"
-                                                                        stroke="currentColor" stroke-linecap="round"
-                                                                        stroke-linejoin="round" stroke-width="32" />
-                                                                    <path
-                                                                        d="M256 96h84a60 60 0 0160 60v212M255 416h-84a60 60 0 01-60-60V144"
-                                                                        fill="none" stroke="currentColor"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="32" />
-                                                                </svg>
-                                                            </a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a class="grid__cart" href="{% url 'add_product_to_cart_second' product.id %}" data-bs-toggle="tooltip"
-                                                                data-bs-placement="top" title="" tabindex="0"
-                                                                data-bs-original-title="Add to cart">
-                                                                Add to cart
-                                                            </a>
-                                                        </li>
-                                                        <!-- <li>
-                                                            <span data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                <a href="#" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="" tabindex="0"
-                                                                    data-bs-original-title="Quick View">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        class="ionicon" viewBox="0 0 512 512">
-                                                                        <path
-                                                                            d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z"
-                                                                            fill="none" stroke="currentColor"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="32" />
-                                                                        <circle cx="256" cy="256" r="80" fill="none"
-                                                                            stroke="currentColor" stroke-miterlimit="10"
-                                                                            stroke-width="32" />
-                                                                    </svg>
-                                                                </a>
-                                                            </span>
-                                                        </li> -->
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="gridarea__content">
-                                                <div class="gridarea__heading">
-                                                    <h3><a href="{% url 'product_detail' product.slug %}">{{ product.title }}</a></h3>
-                                                </div>
-                                                <div class="gridarea__price">
-                                                    ${{ product.discounted_price|default:product.price }}
-                                                    {% if product.discounted_price %}
-                                                    <del>/ ${{ product.price }}</del>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="gridarea__bottom">
-                                                    <a href="{% url 'category_details' product.category.slug %}">
-                                                        {{ product.category.name }}
-                                                    </a>
-                                                    <div class="gridarea__star">
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <i class="icofont-star"></i>
-                                                        <span>(44)</span>
+                                                        </div>
+                                                        <div class="gridarea__small__icon">
+                                                            <form action="{% url 'add_to_wishlist' product.id %}" method="post" style="display: inline;">
+                                                                {% csrf_token %}
+                                                                <button type="submit" style="border: none; background: none;">
+                                                                    {% if product.id in user_wishlist %}
+                                                                        <i class="icofont-heart" style="color: red;"></i>
+                                                                    {% else %}
+                                                                        <i class="icofont-heart-alt"></i>
+                                                                    {% endif %}
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="product__grid__action">
+                                                            <ul>
+                                                                <li>
+                                                                    <a class="grid__cart" href="{% url 'add_product_to_cart_second' product.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" tabindex="0" data-bs-original-title="Add to cart">
+                                                                        Add to cart
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="gridarea__content">
+                                                        <div class="gridarea__heading">
+                                                            <h3><a href="{% url 'product_detail' product.slug %}">{{ product.title }}</a></h3>
+                                                        </div>
+                                                        <div class="gridarea__price">
+                                                            ${{ product.discounted_price|default:product.price }}
+                                                            {% if product.discounted_price %}
+                                                            <del>/ ${{ product.price }}</del>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="gridarea__bottom">
+                                                            <a href="{% url 'category_details' product.category.slug %}">{{ product.category.name }}</a>
+                                                            <div class="gridarea__star">
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <i class="icofont-star"></i>
+                                                                <span>(44)</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- single product end -->
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="col-12">
+                                            <div class="no-products-found">
+                                                <p>No products found.</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- single product end -->
-                                    {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
 

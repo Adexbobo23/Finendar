@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 
+
 @login_required(login_url='login')
 def shop(request):
     query = request.GET.get('q')
@@ -16,8 +17,8 @@ def shop(request):
     if query:
         products = Product.objects.filter(
             Q(title__icontains=query) |
-            Q(description__icontains(query)) |
-            Q(tags__name__icontains=query)  
+            Q(description__icontains=query) |
+            Q(tags__name__icontains=query)
         ).distinct()
     else:
         products = Product.objects.all()
@@ -37,6 +38,10 @@ def shop(request):
     user_wishlist = []
     if request.user.is_authenticated:
         user_wishlist = ProductWishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+    
+    # Calculate the range of displayed products
+    start_index = (products_paginated.number - 1) * paginator.per_page + 1
+    end_index = start_index + len(products_paginated.object_list) - 1
 
     return render(request, 'ecommerce/shop.html', {
         'products': products_paginated,
@@ -44,8 +49,14 @@ def shop(request):
         'selected_product': selected_product,
         'query': query,
         'paginator': paginator,
-        'user_wishlist': user_wishlist
+        'user_wishlist': user_wishlist,
+        'start_index': start_index,
+        'end_index': end_index,
+        'total_products': paginator.count
     })
+
+
+
 
 @login_required(login_url='login')
 def product_details(request, slug):
